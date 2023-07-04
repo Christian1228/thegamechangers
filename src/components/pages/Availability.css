@@ -1,0 +1,13 @@
+.available-classes,
+.available-hangouts {
+  display: flex;
+  flex-flow: column;
+}
+
+.lessons,
+.hangouts {
+  position: relative;
+  border: 1px solid black;
+  display: inline-block;
+  margin: 5px;
+}

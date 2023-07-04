@@ -1,0 +1,12 @@
+* {
+  font-family: Arial, sans-serif;
+}
+
+.form {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 150px;
+  margin-right: 150px;
+}

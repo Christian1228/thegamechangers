@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+/* Font Awesome Icons */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
+
+/* General Styles */
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Home Page */
+.home-page {
+  margin-top: 5%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.cards-container {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.card-item {
+  width: 300px;
+  color: black;
+  text-align: center;
+  padding: 20px;
+  margin: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.card-item:hover {
+  transform: scale(1.05);
+}
+
+.card-item h2 {
+  font-size: 40px;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: 700;
+}
+
+.card-description {
+  margin-bottom: 40px;
+  color: #666;
+}
+
+.card-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-btn,
+.next-btn,
+.final-btn {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  border: 0;
+  padding: 1px;
+  font-size: 14px;
+  background-color: #333;
+  cursor: pointer;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease-in-out;
+  width: 80%;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.hero-btn:hover,
+.next-btn:hover,
+.final-btn:hover {
+  background-color: #f60;
+}
+
+@media screen and (max-width: 768px) {
+  .home-page {
+    margin-top: 5%;
+  }
+
+  .card-item {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .card-item {
+    padding: 15px;
+  }
+
+  .card-item h2 {
+    font-size: 22px;
+  }
+
+  .card-description {
+    margin-bottom: 30px;
+  }
+
+  .hero-btn,
+  .next-btn,
+  .final-btn {
+    font-size: 12px;
+  }
+}
