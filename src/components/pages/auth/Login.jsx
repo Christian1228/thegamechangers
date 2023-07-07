@@ -10,6 +10,7 @@ import "./Auth.css";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
   const signIn = (e) => {
     e.preventDefault();
@@ -18,7 +19,7 @@ export default function Login() {
         console.log(userCredential);
       })
       .catch((error) => {
-        console.log(error);
+        setError(error.message);
       });
 
     setEmail("");
@@ -51,8 +52,12 @@ export default function Login() {
         }
       })
       .catch((error) => {
-        console.log(error);
+        setError(error.message);
       });
+  };
+
+  const closeError = () => {
+    setError("");
   };
 
   return (
@@ -76,6 +81,15 @@ export default function Login() {
           />
           <button type="submit">Sign In</button>
         </form>
+
+        {error && (
+          <div className="popup">
+            <div className="popup-content">
+              <p>{error}</p>
+              <button onClick={closeError}>Close</button>
+            </div>
+          </div>
+        )}
 
         <p>or login using</p>
         <button onClick={signInWithGoogle}>Google</button>
