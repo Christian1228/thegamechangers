@@ -52,6 +52,7 @@
   display: flex;
   flex-flow: column;
   margin: 5px;
+  width: 250px;
 }
 
 .lesson-sub-info,
