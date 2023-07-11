@@ -14,6 +14,17 @@ import {
 } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
+import { styled } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+
 export default function UpcomingEvents() {
   const [lessons, setLessons] = useState([]);
   const [hangouts, setHangouts] = useState([]);
@@ -130,242 +141,339 @@ export default function UpcomingEvents() {
     getRegisteredHangouts();
   }, []);
 
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    "&:last-child td, &:last-child th": {
+      border: 0,
+    },
+  }));
+
   return (
-    <>
+    <div className="upcoming-events">
       <h1 className="header">Organized Classes</h1>
+
+      {/* 
+      <div className="row-headers">
+        <b>
+          <label htmlFor="sport">Sport</label>
+        </b>
+        <b>
+          <label htmlFor="region">Region</label>
+        </b>
+        <b>
+          <label htmlFor="coach-exp">Years of Coaching Exp.</label>
+        </b>
+        <b>
+          <label htmlFor="hourly-rate">Hourly Rate</label>
+        </b>
+        <b>
+          <label htmlFor="description">Description</label>
+        </b>
+      </div>
 
       <div>
         {lessons.map((lesson) => {
           return (
             <div className="lessons">
-              <div>
-                <b>
-                  <label htmlFor="sport">Sport:</label>
-                </b>
-                <div>{lesson.sport}</div>
+              <div className="lesson-info">
+                <div className="lesson-info-items">{lesson.sport}</div>
+                <div className="lesson-info-items">{lesson.region}</div>
+                <div className="lesson-info-items">{lesson.coachExp}</div>
+                <div className="lesson-info-items">{lesson.hourlyRate}</div>
+                <div className="lesson-info-items">{lesson.description}</div>
               </div>
 
-              <div>
-                <b>
-                  <label htmlFor="region">Region:</label>
-                </b>
-                <div>{lesson.region}</div>
+              <div className="lesson-buttons">
+                <a href={`/lesson-registered-users?lessonId=${lesson.id}`}>
+                  <button>View Registered Users</button>
+                </a>
+
+                <a href={`/update-lesson-form?lessonId=${lesson.id}`}>
+                  <button>Update</button>
+                </a>
+
+                <button onClick={() => deleteLesson(lesson.id)}>Delete</button>
               </div>
-
-              <div>
-                <b>
-                  <label htmlFor="coach-exp">Years of Coaching Exp.:</label>
-                </b>
-                <div>{lesson.coachExp}</div>
-              </div>
-
-              <div>
-                <b>
-                  <label htmlFor="hourly-rate">Hourly Rate:</label>
-                </b>
-                <div>{lesson.hourlyRate}</div>
-              </div>
-
-              <div>
-                <b>
-                  <label htmlFor="description">Description:</label>
-                </b>
-                <div>{lesson.description}</div>
-              </div>
-
-              <a href={`/lesson-registered-users?lessonId=${lesson.id}`}>
-                <button>View Registered Users</button>
-              </a>
-
-              <a href={`/update-lesson-form?lessonId=${lesson.id}`}>
-                <button>Update</button>
-              </a>
-
-              <button onClick={() => deleteLesson(lesson.id)}>Delete</button>
             </div>
           );
         })}
       </div>
+      */}
+
+      <div className="organised-lessons">
+        <TableContainer component={Paper}>
+          <Table
+            sx={{ minWidth: 1100, maxWidth: 1250 }}
+            aria-label="customized table"
+          >
+            <TableHead>
+              <TableRow>
+                <StyledTableCell align="center">Sport</StyledTableCell>
+                <StyledTableCell align="center">Region</StyledTableCell>
+                <StyledTableCell align="center">
+                  Years of Coaching Exp.
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  Hourly Rate&nbsp;($)
+                </StyledTableCell>
+                <StyledTableCell align="center">Description</StyledTableCell>
+                <StyledTableCell align="center"></StyledTableCell>
+                <StyledTableCell align="center"></StyledTableCell>
+                <StyledTableCell align="center"></StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {lessons.map((lesson) => (
+                <StyledTableRow key={lesson.id}>
+                  <StyledTableCell align="center">
+                    {lesson.sport}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {lesson.region}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {lesson.coachExp}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {lesson.hourlyRate}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {lesson.description}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    <a href={`/lesson-registered-users?lessonId=${lesson.id}`}>
+                      <Button variant="contained">View Registered Users</Button>
+                    </a>
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    <a href={`/update-lesson-form?lessonId=${lesson.id}`}>
+                      <Button variant="outlined">Update</Button>
+                    </a>
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    <Button
+                      onClick={() => deleteLesson(lesson.id)}
+                      variant="outlined"
+                      color="error"
+                    >
+                      Delete
+                    </Button>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
 
       <h1 className="header">Registered Lessons</h1>
-      <div>
-        {registeredLessons.map((lesson) => {
-          return (
-            <div className="lessons">
-              <div>
-                <b>
-                  <label htmlFor="sport">Sport:</label>
-                </b>
-                <div>{lesson.sport}</div>
-              </div>
 
-              <div>
-                <b>
-                  <label htmlFor="region">Region:</label>
-                </b>
-                <div>{lesson.region}</div>
-              </div>
-
-              <div>
-                <b>
-                  <label htmlFor="coach-exp">Years of Coaching Exp.:</label>
-                </b>
-                <div>{lesson.coachExp}</div>
-              </div>
-
-              <div>
-                <b>
-                  <label htmlFor="hourly-rate">Hourly Rate:</label>
-                </b>
-                <div>{lesson.hourlyRate}</div>
-              </div>
-
-              <div>
-                <b>
-                  <label htmlFor="description">Description:</label>
-                </b>
-                <div>{lesson.description}</div>
-              </div>
-
-              <button onClick={() => withdrawFromLesson(lesson.id)}>
-                Withdraw
-              </button>
-            </div>
-          );
-        })}
+      <div className="registered-lessons">
+        <TableContainer component={Paper}>
+          <Table
+            sx={{ minWidth: 1100, maxWidth: 1250 }}
+            aria-label="customized table"
+          >
+            <TableHead>
+              <TableRow>
+                <StyledTableCell align="center">Sport</StyledTableCell>
+                <StyledTableCell align="center">Region</StyledTableCell>
+                <StyledTableCell align="center">
+                  Years of Coaching Exp.
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  Hourly Rate&nbsp;($)
+                </StyledTableCell>
+                <StyledTableCell align="center">Description</StyledTableCell>
+                <StyledTableCell align="center"></StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {registeredLessons.map((lesson) => (
+                <StyledTableRow key={lesson.id}>
+                  <StyledTableCell align="center">
+                    {lesson.sport}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {lesson.region}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {lesson.coachExp}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {lesson.hourlyRate}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {lesson.description}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    <Button
+                      onClick={() => withdrawFromLesson(lesson.id)}
+                      variant="outlined"
+                      color="error"
+                    >
+                      Withdraw
+                    </Button>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </div>
 
       <h1 className="header">Organized Social Hangouts</h1>
 
-      <div>
-        {hangouts.map((hangout) => {
-          return (
-            <div className="hangouts">
-              <div>
-                <b>
-                  <label htmlFor="sport">Sport:</label>
-                </b>
-                <div>{hangout.sport}</div>
-              </div>
-
-              <div>
-                <b>
-                  <label htmlFor="region">Region:</label>
-                </b>
-                <div>{hangout.region}</div>
-              </div>
-
-              <div>
-                <b>
-                  <label htmlFor="location">Location:</label>
-                </b>
-                <div>{hangout.location}</div>
-              </div>
-
-              <div>
-                <b>
-                  <label htmlFor="date">Date:</label>
-                </b>
-                <div>{hangout.date}</div>
-              </div>
-
-              <div>
-                <b>
-                  <label htmlFor="time">Time:</label>
-                </b>
-                <div>{hangout.time}</div>
-              </div>
-
-              <div>
-                <b>
-                  <label htmlFor="exp-level">Experience Level:</label>
-                </b>
-                <div>{hangout.expLevel}</div>
-              </div>
-
-              <div>
-                <b>
-                  <label htmlFor="description">Description:</label>
-                </b>
-                <div>{hangout.description}</div>
-              </div>
-
-              <a href={`/hangout-registered-users?hangoutId=${hangout.id}`}>
-                <button>View Registered Users</button>
-              </a>
-
-              <a href={`/update-socialhangout-form?hangoutId=${hangout.id}`}>
-                <button>Update</button>
-              </a>
-
-              <button onClick={() => deleteHangout(hangout.id)}>Delete</button>
-            </div>
-          );
-        })}
+      <div className="organised-hangouts">
+        <TableContainer component={Paper}>
+          <Table
+            sx={{ minWidth: 1200, maxWidth: 1350 }}
+            aria-label="customized table"
+          >
+            <TableHead>
+              <TableRow>
+                <StyledTableCell align="center">Sport</StyledTableCell>
+                <StyledTableCell align="center">Region</StyledTableCell>
+                <StyledTableCell align="center">Location</StyledTableCell>
+                <StyledTableCell align="center">Date</StyledTableCell>
+                <StyledTableCell align="center">Time</StyledTableCell>
+                <StyledTableCell align="center">
+                  Experience Level
+                </StyledTableCell>
+                <StyledTableCell align="center">Description</StyledTableCell>
+                <StyledTableCell align="center"></StyledTableCell>
+                <StyledTableCell align="center"></StyledTableCell>
+                <StyledTableCell align="center"></StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {hangouts.map((hangout) => (
+                <StyledTableRow key={hangout.id}>
+                  <StyledTableCell align="center">
+                    {hangout.sport}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {hangout.region}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {hangout.location}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {hangout.date}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {hangout.time}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {hangout.expLevel}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {hangout.description}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    <a
+                      href={`/hangout-registered-users?hangoutId=${hangout.id}`}
+                    >
+                      <Button variant="contained">View Registered Users</Button>
+                    </a>
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    <a
+                      href={`/update-socialhangout-form?hangoutId=${hangout.id}`}
+                    >
+                      <Button variant="outlined">Update</Button>
+                    </a>
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    <Button
+                      onClick={() => deleteHangout(hangout.id)}
+                      variant="outlined"
+                      color="error"
+                    >
+                      Delete
+                    </Button>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </div>
 
       <h1 className="header">Registered Social Hangouts</h1>
 
-      <div>
-        {registeredHangouts.map((hangout) => {
-          return (
-            <div className="hangouts">
-              <div>
-                <b>
-                  <label htmlFor="sport">Sport:</label>
-                </b>
-                <div>{hangout.sport}</div>
-              </div>
-
-              <div>
-                <b>
-                  <label htmlFor="region">Region:</label>
-                </b>
-                <div>{hangout.region}</div>
-              </div>
-
-              <div>
-                <b>
-                  <label htmlFor="location">Location:</label>
-                </b>
-                <div>{hangout.location}</div>
-              </div>
-
-              <div>
-                <b>
-                  <label htmlFor="date">Date:</label>
-                </b>
-                <div>{hangout.date}</div>
-              </div>
-
-              <div>
-                <b>
-                  <label htmlFor="time">Time:</label>
-                </b>
-                <div>{hangout.time}</div>
-              </div>
-
-              <div>
-                <b>
-                  <label htmlFor="exp-level">Experience Level:</label>
-                </b>
-                <div>{hangout.expLevel}</div>
-              </div>
-
-              <div>
-                <b>
-                  <label htmlFor="description">Description:</label>
-                </b>
-                <div>{hangout.description}</div>
-              </div>
-
-              <button onClick={() => withdrawFromHangout(hangout.id)}>
-                Withdraw
-              </button>
-            </div>
-          );
-        })}
+      <div className="registered-hangouts">
+        <TableContainer component={Paper}>
+          <Table
+            sx={{ minWidth: 1200, maxWidth: 1350 }}
+            aria-label="customized table"
+          >
+            <TableHead>
+              <TableRow>
+                <StyledTableCell align="center">Sport</StyledTableCell>
+                <StyledTableCell align="center">Region</StyledTableCell>
+                <StyledTableCell align="center">Location</StyledTableCell>
+                <StyledTableCell align="center">Date</StyledTableCell>
+                <StyledTableCell align="center">Time</StyledTableCell>
+                <StyledTableCell align="center">
+                  Experience Level
+                </StyledTableCell>
+                <StyledTableCell align="center">Description</StyledTableCell>
+                <StyledTableCell align="center"></StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {registeredHangouts.map((hangout) => (
+                <StyledTableRow key={hangout.id}>
+                  <StyledTableCell align="center">
+                    {hangout.sport}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {hangout.region}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {hangout.location}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {hangout.date}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {hangout.time}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {hangout.expLevel}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {hangout.description}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    <Button
+                      onClick={() => withdrawFromHangout(hangout.id)}
+                      variant="outlined"
+                      color="error"
+                    >
+                      Withdraw
+                    </Button>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </div>
-    </>
+    </div>
   );
 }
