@@ -113,7 +113,7 @@ function HangoutRegisteredUsers() {
     <div className="hangout-registered-users">
       <h1>Social Hangout Activity</h1>
 
-      <div className="registered-hangouts">
+      <div className="registered-hangout">
         <TableContainer component={Paper}>
           <Table
             sx={{ minWidth: 1200, maxWidth: 1350 }}
@@ -196,6 +196,7 @@ function HangoutRegisteredUsers() {
                     </div>
                   </div>
                 </div>
+
                 <div className="user-experiences">
                   <b>
                     <label for="experiences">Experiences</label>
