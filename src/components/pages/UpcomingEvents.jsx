@@ -22,7 +22,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
 export default function UpcomingEvents() {
@@ -164,54 +163,6 @@ export default function UpcomingEvents() {
   return (
     <div className="upcoming-events">
       <h1 className="header">Organized Classes</h1>
-
-      {/* 
-      <div className="row-headers">
-        <b>
-          <label htmlFor="sport">Sport</label>
-        </b>
-        <b>
-          <label htmlFor="region">Region</label>
-        </b>
-        <b>
-          <label htmlFor="coach-exp">Years of Coaching Exp.</label>
-        </b>
-        <b>
-          <label htmlFor="hourly-rate">Hourly Rate</label>
-        </b>
-        <b>
-          <label htmlFor="description">Description</label>
-        </b>
-      </div>
-
-      <div>
-        {lessons.map((lesson) => {
-          return (
-            <div className="lessons">
-              <div className="lesson-info">
-                <div className="lesson-info-items">{lesson.sport}</div>
-                <div className="lesson-info-items">{lesson.region}</div>
-                <div className="lesson-info-items">{lesson.coachExp}</div>
-                <div className="lesson-info-items">{lesson.hourlyRate}</div>
-                <div className="lesson-info-items">{lesson.description}</div>
-              </div>
-
-              <div className="lesson-buttons">
-                <a href={`/lesson-registered-users?lessonId=${lesson.id}`}>
-                  <button>View Registered Users</button>
-                </a>
-
-                <a href={`/update-lesson-form?lessonId=${lesson.id}`}>
-                  <button>Update</button>
-                </a>
-
-                <button onClick={() => deleteLesson(lesson.id)}>Delete</button>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      */}
 
       <div className="organised-lessons">
         <TableContainer component={Paper}>

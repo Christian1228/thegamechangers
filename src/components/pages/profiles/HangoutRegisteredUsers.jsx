@@ -12,6 +12,16 @@ import {
 } from "firebase/firestore";
 import { useLocation } from "react-router-dom";
 
+import { styled } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+
 function HangoutRegisteredUsers() {
   const location = useLocation();
   const hangoutId = new URLSearchParams(location.search).get("hangoutId");
@@ -79,108 +89,131 @@ function HangoutRegisteredUsers() {
     fetchProfiles();
   }, [hangout.registeredUsers]);
 
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    "&:last-child td, &:last-child th": {
+      border: 0,
+    },
+  }));
+
   return (
-    <>
+    <div className="hangout-registered-users">
       <h1>Social Hangout Activity</h1>
 
-      <div>
-        <div>
-          <b>
-            <label htmlFor="sport">Sport:</label>
-          </b>
-          <div>{hangout.sport}</div>
-        </div>
-
-        <div>
-          <b>
-            <label htmlFor="region">Region:</label>
-          </b>
-          <div>{hangout.region}</div>
-        </div>
-
-        <div>
-          <b>
-            <label htmlFor="location">Location:</label>
-          </b>
-          <div>{hangout.location}</div>
-        </div>
-
-        <div>
-          <b>
-            <label htmlFor="date">Date:</label>
-          </b>
-          <div>{hangout.date}</div>
-        </div>
-
-        <div>
-          <b>
-            <label htmlFor="time">Time:</label>
-          </b>
-          <div>{hangout.time}</div>
-        </div>
-
-        <div>
-          <b>
-            <label htmlFor="exp-level">Experience Level:</label>
-          </b>
-          <div>{hangout.expLevel}</div>
-        </div>
-
-        <div>
-          <b>
-            <label htmlFor="description">Description:</label>
-          </b>
-          <div>{hangout.description}</div>
-        </div>
+      <div className="registered-hangouts">
+        <TableContainer component={Paper}>
+          <Table
+            sx={{ minWidth: 1200, maxWidth: 1350 }}
+            aria-label="customized table"
+          >
+            <TableHead>
+              <TableRow>
+                <StyledTableCell align="center">Sport</StyledTableCell>
+                <StyledTableCell align="center">Region</StyledTableCell>
+                <StyledTableCell align="center">Location</StyledTableCell>
+                <StyledTableCell align="center">Date</StyledTableCell>
+                <StyledTableCell align="center">Time</StyledTableCell>
+                <StyledTableCell align="center">
+                  Experience Level
+                </StyledTableCell>
+                <StyledTableCell align="center">Description</StyledTableCell>
+                <StyledTableCell align="center"></StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <StyledTableRow>
+                <StyledTableCell align="center">
+                  {hangout.sport}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {hangout.region}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {hangout.location}
+                </StyledTableCell>
+                <StyledTableCell align="center">{hangout.date}</StyledTableCell>
+                <StyledTableCell align="center">{hangout.time}</StyledTableCell>
+                <StyledTableCell align="center">
+                  {hangout.expLevel}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {hangout.description}
+                </StyledTableCell>
+              </StyledTableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
       </div>
 
       <h1>Registered Users</h1>
 
-      {registeredUsersProfiles.map((profile) => {
-        return (
-          <div className="user-container">
-            <div>
-              <b>
-                <label for="name">Name</label>
-              </b>
-              <div>{profile.name}</div>
-            </div>
+      <div className="users">
+        {registeredUsersProfiles.map((profile) => {
+          return (
+            <div className="user-card">
+              <div className="user-info">
+                <div className="user-sub-info">
+                  <div className="user-name">
+                    <b>
+                      <label for="name">Name</label>
+                    </b>
+                    <div>{profile.name}</div>
+                  </div>
 
-            <div>
-              <b>
-                <label for="gender">Gender</label>
-              </b>
-              <div>{profile.gender}</div>
-            </div>
+                  <div className="user-other-info">
+                    <div>
+                      <b>
+                        <label for="gender">Gender</label>
+                      </b>
+                      <div>{profile.gender}</div>
+                    </div>
 
-            <div>
-              <b>
-                <label for="dob">Date of Birth</label>
-              </b>
-              <div>{profile.dateOfBirth}</div>
-            </div>
+                    <div>
+                      <b>
+                        <label for="dob">Date of Birth</label>
+                      </b>
+                      <div>{profile.dateOfBirth}</div>
+                    </div>
 
-            <div>
-              <b>
-                <label for="teleTag">Telegram Tag</label>
-              </b>
-              <div>{profile.teleTag}</div>
+                    <div>
+                      <b>
+                        <label for="teleTag">Telegram Tag</label>
+                      </b>
+                      <div>{profile.teleTag}</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="user-experiences">
+                  <b>
+                    <label for="experiences">Experiences</label>
+                  </b>
+                  <div>{profile.experiences}</div>
+                </div>
+              </div>
             </div>
+          );
+        })}
+      </div>
 
-            <div>
-              <b>
-                <label for="experiences">Experiences</label>
-              </b>
-              <div>{profile.experiences}</div>
-            </div>
-          </div>
-        );
-      })}
-
-      <a href="/upcoming-events">
-        <button>Return to your Upcoming Events</button>
-      </a>
-    </>
+      <div className="return-button">
+        <a href="/upcoming-events">
+          <Button variant="contained">Return to your Upcoming Events</Button>
+        </a>
+      </div>
+    </div>
   );
 }
 
