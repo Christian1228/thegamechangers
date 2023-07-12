@@ -4,14 +4,16 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
+console.log(process.env.REACT_APP_PROJECT_ID);
+
 const firebaseConfig = {
-  apiKey: "AIzaSyC6kSBqYDM8Q1TuQoCONkL90mIDlzPLPQQ",
-  authDomain: "thegamechangers-9d9cc.firebaseapp.com",
-  projectId: "thegamechangers-9d9cc",
-  storageBucket: "thegamechangers-9d9cc.appspot.com",
-  messagingSenderId: "1012792943482",
-  appId: "1:1012792943482:web:5755bf8a472bf4a64aecc3",
-  measurementId: "G-G4G6CBPTJ3",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);

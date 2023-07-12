@@ -113,88 +113,102 @@ function AvailableLessons() {
 
   return (
     <div className="available-classes">
-      <div>
+      <div className="top-section">
         <h1 className="header">Available Classes</h1>
 
-        <div>
-          <label htmlFor="sportFilter">Sport:</label>
-          <select
-            id="sportFilter"
-            value={selectedSport}
-            onChange={(e) => setSelectedSport(e.target.value)}
-          >
-            <option value="">All Sports</option>
-            {sportData.map((op) => (
-              <option>{op}</option>
-            ))}
-          </select>
-        </div>
+        <div className="filters">
+          <div className="filter">
+            <label htmlFor="sportFilter" className="filter-labels">
+              Sport:
+            </label>
+            <select
+              id="sportFilter"
+              value={selectedSport}
+              onChange={(e) => setSelectedSport(e.target.value)}
+            >
+              <option value="">All Sports</option>
+              {sportData.map((op) => (
+                <option>{op}</option>
+              ))}
+            </select>
+          </div>
 
-        <div>
-          <label htmlFor="regionFilter">Region:</label>
-          <select
-            id="regionFilter"
-            value={selectedRegion}
-            onChange={(e) => setSelectedRegion(e.target.value)}
-          >
-            <option value="">All Regions</option>
-            {regionData.map((op) => (
-              <option>{op}</option>
-            ))}
-          </select>
+          <div className="filter">
+            <label htmlFor="regionFilter" className="filter-labels">
+              Region:
+            </label>
+            <select
+              id="regionFilter"
+              value={selectedRegion}
+              onChange={(e) => setSelectedRegion(e.target.value)}
+            >
+              <option value="">All Regions</option>
+              {regionData.map((op) => (
+                <option>{op}</option>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
 
-      <div>
+      <div className="body">
         {lessons.map((lesson) => {
           const profile = profiles[lesson.id];
           return (
-            <div className="lessons">
-              <div key={lesson.id}>
-                <div>
-                  <b>
-                    <label htmlFor="name">Coach's Name:</label>
-                  </b>
-                  <div>{profile && profile.name}</div>
-                </div>
+            <div className="lesson-card">
+              <div className="lesson-info">
+                <div key={lesson.id}>
+                  <div className="lesson-sub-info">
+                    <div className="coach-info">
+                      <b>
+                        <label htmlFor="name">Coach's Name:</label>
+                      </b>
+                      <div>{profile && profile.name}</div>
+                    </div>
 
-                <div>
-                  <b>
-                    <label htmlFor="sport">Sport:</label>
-                  </b>
-                  <div>{lesson.sport}</div>
-                </div>
+                    <div className="lesson-other-info">
+                      <div>
+                        <b>
+                          <label htmlFor="sport">Sport:</label>
+                        </b>
+                        <div>{lesson.sport}</div>
+                      </div>
 
-                <div>
-                  <b>
-                    <label htmlFor="region">Region:</label>
-                  </b>
-                  <div>{lesson.region}</div>
-                </div>
+                      <div>
+                        <b>
+                          <label htmlFor="region">Region:</label>
+                        </b>
+                        <div>{lesson.region}</div>
+                      </div>
 
-                <div>
-                  <b>
-                    <label htmlFor="coach-exp">Years of Coaching Exp.:</label>
-                  </b>
-                  <div>{lesson.coachExp}</div>
-                </div>
+                      <div>
+                        <b>
+                          <label htmlFor="coach-exp">
+                            Years of Coaching Exp.:
+                          </label>
+                        </b>
+                        <div>{lesson.coachExp}</div>
+                      </div>
 
-                <div>
-                  <b>
-                    <label htmlFor="hourly-rate">Hourly Rate:</label>
-                  </b>
-                  <div>{lesson.hourlyRate}</div>
-                </div>
+                      <div>
+                        <b>
+                          <label htmlFor="hourly-rate">Hourly Rate:</label>
+                        </b>
+                        <div>{lesson.hourlyRate}</div>
+                      </div>
+                    </div>
+                  </div>
 
-                <div>
-                  <b>
-                    <label htmlFor="description">Description:</label>
-                  </b>
-                  <div>{lesson.description}</div>
+                  <div className="lesson-description">
+                    <b>
+                      <label htmlFor="description">Description:</label>
+                    </b>
+                    <div>{lesson.description}</div>
+                  </div>
                 </div>
               </div>
 
-              <div>
+              <div className="register-button">
                 {lesson.registeredUsers.includes(auth.currentUser.uid) ? (
                   <button disabled="disabled">Registered</button>
                 ) : (
