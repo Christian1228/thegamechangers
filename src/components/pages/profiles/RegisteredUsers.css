@@ -1,6 +1,59 @@
-.user-container {
+.hangout-registered-users {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  padding: 0;
+}
+
+.users {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.user-card {
   position: relative;
   border: 1px solid black;
-  display: inline-block;
+  border-radius: 10px;
+  display: flex;
+  flex-flow: column;
   margin: 5px;
+  max-width: 230px;
+  min-width: 230px;
+}
+
+.user-info {
+  margin: 10px;
+}
+
+.user-sub-info {
+  display: flex;
+}
+
+.user-name {
+  flex: 1;
+}
+
+.user-other-info {
+  flex: 2;
+}
+
+.user-name {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.user-experiences {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.return-button {
+  margin: 20px;
 }
