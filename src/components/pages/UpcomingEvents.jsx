@@ -24,12 +24,26 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 
+import Notification from "./Notification";
+import ConfirmDialog from "./ConfirmDialog";
+
 export default function UpcomingEvents() {
   const [lessons, setLessons] = useState([]);
   const [hangouts, setHangouts] = useState([]);
 
   const [registeredLessons, setRegisteredLessons] = useState([]);
   const [registeredHangouts, setRegisteredHangouts] = useState([]);
+
+  const [notify, setNotify] = useState({
+    isOpen: false,
+    message: "",
+    type: "",
+  });
+  const [confirmDialog, setConfirmDialog] = useState({
+    isOpen: false,
+    title: "",
+    subTitle: "",
+  });
 
   const auth = getAuth();
 
@@ -106,31 +120,67 @@ export default function UpcomingEvents() {
   };
 
   const deleteLesson = async (id) => {
+    setConfirmDialog({
+      ...confirmDialog,
+      isOpen: false,
+    });
     const lessonDoc = doc(db, "lessons", id);
     await deleteDoc(lessonDoc);
     getLessons();
+    setNotify({
+      isOpen: true,
+      message: "Successfully Deleted",
+      type: "success",
+    });
   };
 
   const deleteHangout = async (id) => {
-    const lessonDoc = doc(db, "lessons", id);
-    await deleteDoc(lessonDoc);
-    getLessons();
+    setConfirmDialog({
+      ...confirmDialog,
+      isOpen: false,
+    });
+    const hangoutDoc = doc(db, "hangouts", id);
+    await deleteDoc(hangoutDoc);
+    getHangouts();
+    setNotify({
+      isOpen: true,
+      message: "Successfully Deleted",
+      type: "success",
+    });
   };
 
   const withdrawFromLesson = async (lessonId) => {
+    setConfirmDialog({
+      ...confirmDialog,
+      isOpen: false,
+    });
     const lessonRef = doc(db, "lessons", lessonId);
     await updateDoc(lessonRef, {
       registeredUsers: arrayRemove(auth.currentUser.uid),
     });
     getRegisteredLessons();
+    setNotify({
+      isOpen: true,
+      message: "Successfully Withdrawn",
+      type: "success",
+    });
   };
 
   const withdrawFromHangout = async (hangoutId) => {
+    setConfirmDialog({
+      ...confirmDialog,
+      isOpen: false,
+    });
     const hangoutRef = doc(db, "hangouts", hangoutId);
     await updateDoc(hangoutRef, {
       registeredUsers: arrayRemove(auth.currentUser.uid),
     });
     getRegisteredHangouts();
+    setNotify({
+      isOpen: true,
+      message: "Successfully Withdrawn",
+      type: "success",
+    });
   };
 
   useEffect(() => {
@@ -216,7 +266,16 @@ export default function UpcomingEvents() {
                   </StyledTableCell>
                   <StyledTableCell align="center">
                     <Button
-                      onClick={() => deleteLesson(lesson.id)}
+                      onClick={() =>
+                        setConfirmDialog({
+                          isOpen: true,
+                          title: "Are you sure to delete this Lesson?",
+                          subTitle: "You can't undo this operation",
+                          onConfirm: () => {
+                            deleteLesson(lesson.id);
+                          },
+                        })
+                      }
                       variant="outlined"
                       color="error"
                     >
@@ -272,7 +331,16 @@ export default function UpcomingEvents() {
                   </StyledTableCell>
                   <StyledTableCell align="center">
                     <Button
-                      onClick={() => withdrawFromLesson(lesson.id)}
+                      onClick={() =>
+                        setConfirmDialog({
+                          isOpen: true,
+                          title: "Are you sure to withdraw from this Lesson?",
+                          subTitle: "You can't undo this operation",
+                          onConfirm: () => {
+                            withdrawFromLesson(lesson.id);
+                          },
+                        })
+                      }
                       variant="outlined"
                       color="error"
                     >
@@ -350,7 +418,17 @@ export default function UpcomingEvents() {
                   </StyledTableCell>
                   <StyledTableCell align="center">
                     <Button
-                      onClick={() => deleteHangout(hangout.id)}
+                      onClick={() =>
+                        setConfirmDialog({
+                          isOpen: true,
+                          title:
+                            "Are you sure to delete this Social Hangout Activity?",
+                          subTitle: "You can't undo this operation",
+                          onConfirm: () => {
+                            deleteHangout(hangout.id);
+                          },
+                        })
+                      }
                       variant="outlined"
                       color="error"
                     >
@@ -412,7 +490,17 @@ export default function UpcomingEvents() {
                   </StyledTableCell>
                   <StyledTableCell align="center">
                     <Button
-                      onClick={() => withdrawFromHangout(hangout.id)}
+                      onClick={() =>
+                        setConfirmDialog({
+                          isOpen: true,
+                          title:
+                            "Are you sure to withdraw from this Social Hangout Activity?",
+                          subTitle: "You can't undo this operation",
+                          onConfirm: () => {
+                            withdrawFromHangout(hangout.id);
+                          },
+                        })
+                      }
                       variant="outlined"
                       color="error"
                     >
@@ -425,6 +513,12 @@ export default function UpcomingEvents() {
           </Table>
         </TableContainer>
       </div>
+
+      <Notification notify={notify} setNotify={setNotify} />
+      <ConfirmDialog
+        confirmDialog={confirmDialog}
+        setConfirmDialog={setConfirmDialog}
+      />
     </div>
   );
 }
