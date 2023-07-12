@@ -212,7 +212,7 @@ export default function UpcomingEvents() {
 
   return (
     <div className="upcoming-events">
-      <h1 className="header">Organized Classes</h1>
+      <h1 className="header">Organised Classes</h1>
 
       <div className="organised-lessons">
         <TableContainer component={Paper}>
@@ -237,53 +237,65 @@ export default function UpcomingEvents() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {lessons.map((lesson) => (
-                <StyledTableRow key={lesson.id}>
-                  <StyledTableCell align="center">
-                    {lesson.sport}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {lesson.region}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {lesson.coachExp}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {lesson.hourlyRate}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {lesson.description}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    <a href={`/lesson-registered-users?lessonId=${lesson.id}`}>
-                      <Button variant="contained">View Registered Users</Button>
-                    </a>
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    <a href={`/update-lesson-form?lessonId=${lesson.id}`}>
-                      <Button variant="outlined">Update</Button>
-                    </a>
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    <Button
-                      onClick={() =>
-                        setConfirmDialog({
-                          isOpen: true,
-                          title: "Are you sure to delete this Lesson?",
-                          subTitle: "You can't undo this operation",
-                          onConfirm: () => {
-                            deleteLesson(lesson.id);
-                          },
-                        })
-                      }
-                      variant="outlined"
-                      color="error"
-                    >
-                      Delete
-                    </Button>
+              {lessons.length === 0 ? (
+                <StyledTableRow>
+                  <StyledTableCell align="center" colSpan={8}>
+                    No Organised Classes
                   </StyledTableCell>
                 </StyledTableRow>
-              ))}
+              ) : (
+                lessons.map((lesson) => (
+                  <StyledTableRow key={lesson.id}>
+                    <StyledTableCell align="center">
+                      {lesson.sport}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {lesson.region}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {lesson.coachExp}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {lesson.hourlyRate}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {lesson.description}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      <a
+                        href={`/lesson-registered-users?lessonId=${lesson.id}`}
+                      >
+                        <Button variant="contained">
+                          View Registered Users
+                        </Button>
+                      </a>
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      <a href={`/update-lesson-form?lessonId=${lesson.id}`}>
+                        <Button variant="outlined">Update</Button>
+                      </a>
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      <Button
+                        onClick={() =>
+                          setConfirmDialog({
+                            isOpen: true,
+                            title: "Are you sure to delete this Lesson?",
+                            subTitle: "You can't undo this operation",
+                            onConfirm: () => {
+                              deleteLesson(lesson.id);
+                            },
+                          })
+                        }
+                        variant="outlined"
+                        color="error"
+                      >
+                        Delete
+                      </Button>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))
+              )}
             </TableBody>
           </Table>
         </TableContainer>
@@ -312,49 +324,57 @@ export default function UpcomingEvents() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {registeredLessons.map((lesson) => (
-                <StyledTableRow key={lesson.id}>
-                  <StyledTableCell align="center">
-                    {lesson.sport}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {lesson.region}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {lesson.coachExp}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {lesson.hourlyRate}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {lesson.description}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    <Button
-                      onClick={() =>
-                        setConfirmDialog({
-                          isOpen: true,
-                          title: "Are you sure to withdraw from this Lesson?",
-                          subTitle: "You can't undo this operation",
-                          onConfirm: () => {
-                            withdrawFromLesson(lesson.id);
-                          },
-                        })
-                      }
-                      variant="outlined"
-                      color="error"
-                    >
-                      Withdraw
-                    </Button>
+              {registeredLessons.length === 0 ? (
+                <StyledTableRow>
+                  <StyledTableCell align="center" colSpan={6}>
+                    No Registered Lessons
                   </StyledTableCell>
                 </StyledTableRow>
-              ))}
+              ) : (
+                registeredLessons.map((lesson) => (
+                  <StyledTableRow key={lesson.id}>
+                    <StyledTableCell align="center">
+                      {lesson.sport}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {lesson.region}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {lesson.coachExp}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {lesson.hourlyRate}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {lesson.description}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      <Button
+                        onClick={() =>
+                          setConfirmDialog({
+                            isOpen: true,
+                            title: "Are you sure to withdraw from this Lesson?",
+                            subTitle: "You can't undo this operation",
+                            onConfirm: () => {
+                              withdrawFromLesson(lesson.id);
+                            },
+                          })
+                        }
+                        variant="outlined"
+                        color="error"
+                      >
+                        Withdraw
+                      </Button>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))
+              )}
             </TableBody>
           </Table>
         </TableContainer>
       </div>
 
-      <h1 className="header">Organized Social Hangouts</h1>
+      <h1 className="header">Organised Social Hangouts</h1>
 
       <div className="organised-hangouts">
         <TableContainer component={Paper}>
@@ -379,64 +399,74 @@ export default function UpcomingEvents() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {hangouts.map((hangout) => (
-                <StyledTableRow key={hangout.id}>
-                  <StyledTableCell align="center">
-                    {hangout.sport}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {hangout.region}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {hangout.location}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {hangout.date}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {hangout.time}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {hangout.expLevel}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {hangout.description}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    <a
-                      href={`/hangout-registered-users?hangoutId=${hangout.id}`}
-                    >
-                      <Button variant="contained">View Registered Users</Button>
-                    </a>
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    <a
-                      href={`/update-socialhangout-form?hangoutId=${hangout.id}`}
-                    >
-                      <Button variant="outlined">Update</Button>
-                    </a>
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    <Button
-                      onClick={() =>
-                        setConfirmDialog({
-                          isOpen: true,
-                          title:
-                            "Are you sure to delete this Social Hangout Activity?",
-                          subTitle: "You can't undo this operation",
-                          onConfirm: () => {
-                            deleteHangout(hangout.id);
-                          },
-                        })
-                      }
-                      variant="outlined"
-                      color="error"
-                    >
-                      Delete
-                    </Button>
+              {hangouts.length === 0 ? (
+                <StyledTableRow>
+                  <StyledTableCell align="center" colSpan={10}>
+                    No Organised Social Hangouts
                   </StyledTableCell>
                 </StyledTableRow>
-              ))}
+              ) : (
+                hangouts.map((hangout) => (
+                  <StyledTableRow key={hangout.id}>
+                    <StyledTableCell align="center">
+                      {hangout.sport}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {hangout.region}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {hangout.location}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {hangout.date}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {hangout.time}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {hangout.expLevel}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {hangout.description}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      <a
+                        href={`/hangout-registered-users?hangoutId=${hangout.id}`}
+                      >
+                        <Button variant="contained">
+                          View Registered Users
+                        </Button>
+                      </a>
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      <a
+                        href={`/update-socialhangout-form?hangoutId=${hangout.id}`}
+                      >
+                        <Button variant="outlined">Update</Button>
+                      </a>
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      <Button
+                        onClick={() =>
+                          setConfirmDialog({
+                            isOpen: true,
+                            title:
+                              "Are you sure to delete this Social Hangout Activity?",
+                            subTitle: "You can't undo this operation",
+                            onConfirm: () => {
+                              deleteHangout(hangout.id);
+                            },
+                          })
+                        }
+                        variant="outlined"
+                        color="error"
+                      >
+                        Delete
+                      </Button>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))
+              )}
             </TableBody>
           </Table>
         </TableContainer>
@@ -465,50 +495,58 @@ export default function UpcomingEvents() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {registeredHangouts.map((hangout) => (
-                <StyledTableRow key={hangout.id}>
-                  <StyledTableCell align="center">
-                    {hangout.sport}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {hangout.region}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {hangout.location}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {hangout.date}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {hangout.time}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {hangout.expLevel}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {hangout.description}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    <Button
-                      onClick={() =>
-                        setConfirmDialog({
-                          isOpen: true,
-                          title:
-                            "Are you sure to withdraw from this Social Hangout Activity?",
-                          subTitle: "You can't undo this operation",
-                          onConfirm: () => {
-                            withdrawFromHangout(hangout.id);
-                          },
-                        })
-                      }
-                      variant="outlined"
-                      color="error"
-                    >
-                      Withdraw
-                    </Button>
+              {registeredHangouts.length === 0 ? (
+                <StyledTableRow>
+                  <StyledTableCell align="center" colSpan={8}>
+                    No Registered Social Hangouts
                   </StyledTableCell>
                 </StyledTableRow>
-              ))}
+              ) : (
+                registeredHangouts.map((hangout) => (
+                  <StyledTableRow key={hangout.id}>
+                    <StyledTableCell align="center">
+                      {hangout.sport}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {hangout.region}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {hangout.location}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {hangout.date}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {hangout.time}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {hangout.expLevel}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {hangout.description}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      <Button
+                        onClick={() =>
+                          setConfirmDialog({
+                            isOpen: true,
+                            title:
+                              "Are you sure to withdraw from this Social Hangout Activity?",
+                            subTitle: "You can't undo this operation",
+                            onConfirm: () => {
+                              withdrawFromHangout(hangout.id);
+                            },
+                          })
+                        }
+                        variant="outlined"
+                        color="error"
+                      >
+                        Withdraw
+                      </Button>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))
+              )}
             </TableBody>
           </Table>
         </TableContainer>
