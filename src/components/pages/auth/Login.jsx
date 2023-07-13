@@ -5,7 +5,7 @@ import { db, auth, googleProvider } from "../../../config/firebase";
 import { addDoc, collection, query, where } from "firebase/firestore";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { Link } from "react-router-dom";
-import "./Auth.css";
+import Button from "@mui/material/Button";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -79,7 +79,16 @@ export default function Login() {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit">Sign In</button>
+          <div className="button-container">
+            <Button
+              type="submit"
+              variant="contained"
+              color="success"
+              style={{ height: "35px", lineHeight: "35px", fontSize: "12px" }}
+            >
+              Sign In
+            </Button>
+          </div>
         </form>
 
         {error && (
@@ -92,7 +101,16 @@ export default function Login() {
         )}
 
         <p>or login using</p>
-        <button onClick={signInWithGoogle}>Google</button>
+        <div className="button-container">
+          <Button
+            onClick={signInWithGoogle}
+            variant="contained"
+            color="success"
+            style={{ height: "35px", lineHeight: "35px", fontSize: "12px" }}
+          >
+            Google
+          </Button>
+        </div>
 
         <p>Don't have an account?</p>
         <Link to="/signup">Create New Account</Link>

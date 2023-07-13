@@ -4,6 +4,7 @@ import "./Form.css";
 import { db } from "../../../config/firebase";
 import { getDoc, updateDoc, doc } from "firebase/firestore";
 import { useLocation, useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 function UpdateLessonForm() {
   const location = useLocation();
@@ -159,7 +160,14 @@ function UpdateLessonForm() {
           </div>
 
           <div className="button">
-            <button onClick={updateLesson}>Update Lesson</button>
+            <Button
+              onClick={updateLesson}
+              variant="contained"
+              color="success"
+              style={{ height: "40px", lineHeight: "40px", fontSize: "15px" }}
+            >
+              Update Lesson
+            </Button>
           </div>
         </div>
       </div>

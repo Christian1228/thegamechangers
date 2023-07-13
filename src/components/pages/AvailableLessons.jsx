@@ -12,6 +12,7 @@ import {
   doc,
 } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import Button from "@mui/material/Button";
 
 function AvailableLessons() {
   const [lessons, setLessons] = useState([]);
@@ -210,9 +211,12 @@ function AvailableLessons() {
 
               <div className="register-button">
                 {lesson.registeredUsers.includes(auth.currentUser.uid) ? (
-                  <button disabled="disabled">Registered</button>
+                  <Button variant="contained" disabled>
+                    Registered
+                  </Button>
                 ) : (
-                  <button
+                  <Button
+                    variant="contained"
                     onClick={(e) => {
                       e.preventDefault();
                       updateRegisteredUsers(
@@ -224,7 +228,7 @@ function AvailableLessons() {
                     }}
                   >
                     Register
-                  </button>
+                  </Button>
                 )}
               </div>
             </div>

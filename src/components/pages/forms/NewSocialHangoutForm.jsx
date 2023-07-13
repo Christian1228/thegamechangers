@@ -4,6 +4,7 @@ import "./Form.css";
 import { db, auth } from "../../../config/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 export default function NewSocialHangout() {
   const [newSport, setNewSport] = useState("");
@@ -153,7 +154,14 @@ export default function NewSocialHangout() {
           </div>
 
           <div className="button">
-            <button onClick={onSubmitHangout}>Submit Form</button>
+            <Button
+              onClick={onSubmitHangout}
+              variant="contained"
+              color="success"
+              style={{ height: "40px", lineHeight: "40px", fontSize: "15px" }}
+            >
+              Submit Form
+            </Button>
           </div>
         </div>
       </div>

@@ -11,6 +11,7 @@ import {
   where,
 } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import Button from "@mui/material/Button";
 
 export default function Profile() {
   const [profiles, setProfiles] = useState([]);
@@ -142,9 +143,14 @@ export default function Profile() {
             </div>
 
             <div className="btn-save">
-              <button onClick={() => updateProfile(profile.id)}>
+              <Button
+                onClick={() => updateProfile(profile.id)}
+                variant="contained"
+                color="success"
+                style={{ height: "40px", lineHeight: "40px", fontSize: "15px" }}
+              >
                 Save Changes
-              </button>
+              </Button>
             </div>
           </div>
         ))}

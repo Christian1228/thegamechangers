@@ -4,6 +4,7 @@ import { db, auth } from "../../../config/firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -90,7 +91,16 @@ export default function SignUp() {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit">Sign Up</button>
+          <div className="button-container">
+            <Button
+              type="submit"
+              variant="contained"
+              color="success"
+              style={{ height: "35px", lineHeight: "35px", fontSize: "12px" }}
+            >
+              Sign Up
+            </Button>
+          </div>
         </form>
 
         {showPopup && (

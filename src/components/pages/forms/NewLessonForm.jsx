@@ -4,6 +4,7 @@ import "./Form.css";
 import { db, auth } from "../../../config/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 export default function LessonForm() {
   const [newSport, setNewSport] = useState("");
@@ -122,7 +123,14 @@ export default function LessonForm() {
           </div>
 
           <div className="button">
-            <button onClick={onSubmitLesson}>Submit Form</button>
+            <Button
+              onClick={onSubmitLesson}
+              variant="contained"
+              color="success"
+              style={{ height: "40px", lineHeight: "40px", fontSize: "15px" }}
+            >
+              Submit Form
+            </Button>
           </div>
         </div>
       </div>
