@@ -105,7 +105,7 @@ export default function Login() {
           <Button
             onClick={signInWithGoogle}
             variant="contained"
-            color="success"
+            color="primary"
             style={{ height: "35px", lineHeight: "35px", fontSize: "12px" }}
           >
             Google
