@@ -17,7 +17,15 @@ function Home() {
           </div>
           <div className="card-buttons">
             <a href="/new-lesson-form" class="hero-btn">
-              <button>Create a new lesson</button>
+              <button
+                style={{
+                  backgroundColor: "#6F8FAF",
+                  color: "white",
+                  fontSize: "14px",
+                }}
+              >
+                Create a new lesson
+              </button>
             </a>
           </div>
         </div>
@@ -32,7 +40,15 @@ function Home() {
           </div>
           <div className="card-buttons">
             <a href="/available-lessons" class="next-btn">
-              <button>View available classes</button>
+              <button
+                style={{
+                  backgroundColor: "#6F8FAF",
+                  color: "white",
+                  fontSize: "14px",
+                }}
+              >
+                View available classes
+              </button>
             </a>
           </div>
         </div>
@@ -46,10 +62,26 @@ function Home() {
           </div>
           <div className="card-buttons">
             <a href="/new-socialhangout-form" class="final-btn">
-              <button>Create a new social hangout</button>
+              <button
+                style={{
+                  backgroundColor: "#6F8FAF",
+                  color: "white",
+                  fontSize: "14px",
+                }}
+              >
+                Create a new social hangout
+              </button>
             </a>
             <a href="/available-socialhangouts" class="final-btn">
-              <button>View available social hangouts</button>
+              <button
+                style={{
+                  backgroundColor: "#6F8FAF",
+                  color: "white",
+                  fontSize: "14px",
+                }}
+              >
+                View available social hangouts
+              </button>
             </a>
           </div>
         </div>
