@@ -13,9 +13,17 @@ import {
 import { getAuth } from "firebase/auth";
 import Button from "@mui/material/Button";
 
+import Notification from "./Notification";
+
 export default function Profile() {
   const [profiles, setProfiles] = useState([]);
   const [selectedProfile, setSelectedProfile] = useState(null);
+
+  const [notify, setNotify] = useState({
+    isOpen: false,
+    message: "",
+    type: "",
+  });
 
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -42,6 +50,11 @@ export default function Profile() {
       dateOfBirth: dob,
       teleTag: teleTag,
       experiences: experiences,
+    });
+    setNotify({
+      isOpen: true,
+      message: "Successfully Updated",
+      type: "success",
     });
   };
 
@@ -154,6 +167,7 @@ export default function Profile() {
             </div>
           </div>
         ))}
+        <Notification notify={notify} setNotify={setNotify} />
       </div>
     </>
   );
