@@ -4,6 +4,7 @@
   flex-flow: column;
   align-items: center;
   justify-content: center;
+  background-image: linear-gradient(79deg, #9fa5ff, #c5f8ff, #9fa5ff);
 }
 
 h1 {

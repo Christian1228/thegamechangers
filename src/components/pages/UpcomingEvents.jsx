@@ -212,344 +212,393 @@ export default function UpcomingEvents() {
 
   return (
     <div className="upcoming-events">
-      <h1 className="header">Organised Classes</h1>
+      <div className="organised-lessons-container">
+        <div className="header">
+          <h1>Organised Classes</h1>
+        </div>
 
-      <div className="organised-lessons">
-        <TableContainer component={Paper}>
-          <Table
-            sx={{ minWidth: 1100, maxWidth: 1250 }}
-            aria-label="customized table"
-          >
-            <TableHead>
-              <TableRow>
-                <StyledTableCell align="center">Sport</StyledTableCell>
-                <StyledTableCell align="center">Region</StyledTableCell>
-                <StyledTableCell align="center">
-                  Years of Coaching Exp.
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  Hourly Rate&nbsp;($)
-                </StyledTableCell>
-                <StyledTableCell align="center">Description</StyledTableCell>
-                <StyledTableCell align="center"></StyledTableCell>
-                <StyledTableCell align="center"></StyledTableCell>
-                <StyledTableCell align="center"></StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {lessons.length === 0 ? (
-                <StyledTableRow>
-                  <StyledTableCell align="center" colSpan={8}>
-                    No Organised Classes
+        <div className="organised-lessons">
+          <TableContainer component={Paper}>
+            <Table
+              sx={{ minWidth: 1100, maxWidth: 1250 }}
+              aria-label="customized table"
+            >
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell align="center">Sport</StyledTableCell>
+                  <StyledTableCell align="center">Region</StyledTableCell>
+                  <StyledTableCell align="center">
+                    Years of Coaching Exp.
                   </StyledTableCell>
-                </StyledTableRow>
-              ) : (
-                lessons.map((lesson) => (
-                  <StyledTableRow key={lesson.id}>
-                    <StyledTableCell align="center">
-                      {lesson.sport}
+                  <StyledTableCell align="center">
+                    Hourly Rate&nbsp;($)
+                  </StyledTableCell>
+                  <StyledTableCell align="center">Description</StyledTableCell>
+                  <StyledTableCell align="center"></StyledTableCell>
+                  <StyledTableCell align="center"></StyledTableCell>
+                  <StyledTableCell align="center"></StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {lessons.length === 0 ? (
+                  <StyledTableRow>
+                    <StyledTableCell align="center" colSpan={8}>
+                      No Organised Classes
                     </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {lesson.region}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {lesson.coachExp}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {lesson.hourlyRate}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {lesson.description}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      <a
-                        href={`/lesson-registered-users?lessonId=${lesson.id}`}
+                  </StyledTableRow>
+                ) : (
+                  lessons.map((lesson) => (
+                    <StyledTableRow key={lesson.id}>
+                      <StyledTableCell align="center">
+                        {lesson.sport}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {lesson.region}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {lesson.coachExp}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {lesson.hourlyRate}
+                      </StyledTableCell>
+                      <StyledTableCell
+                        align="center"
+                        style={{ width: "400px" }}
                       >
-                        <Button variant="contained">
-                          View Registered Users
+                        {lesson.description}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        <a
+                          href={`/lesson-registered-users?lessonId=${lesson.id}`}
+                        >
+                          <Button
+                            variant="contained"
+                            style={{ width: "110px", fontSize: "12px" }}
+                          >
+                            View Registered Users
+                          </Button>
+                        </a>
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        <a href={`/update-lesson-form?lessonId=${lesson.id}`}>
+                          <Button
+                            variant="outlined"
+                            style={{ width: "100px", fontSize: "12px" }}
+                          >
+                            Update
+                          </Button>
+                        </a>
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        <Button
+                          onClick={() =>
+                            setConfirmDialog({
+                              isOpen: true,
+                              title: "Are you sure to delete this Lesson?",
+                              subTitle: "You can't undo this operation",
+                              onConfirm: () => {
+                                deleteLesson(lesson.id);
+                              },
+                            })
+                          }
+                          variant="outlined"
+                          color="error"
+                          style={{ width: "100px", fontSize: "12px" }}
+                        >
+                          Delete
                         </Button>
-                      </a>
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      <a href={`/update-lesson-form?lessonId=${lesson.id}`}>
-                        <Button variant="outlined">Update</Button>
-                      </a>
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      <Button
-                        onClick={() =>
-                          setConfirmDialog({
-                            isOpen: true,
-                            title: "Are you sure to delete this Lesson?",
-                            subTitle: "You can't undo this operation",
-                            onConfirm: () => {
-                              deleteLesson(lesson.id);
-                            },
-                          })
-                        }
-                        variant="outlined"
-                        color="error"
-                      >
-                        Delete
-                      </Button>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
       </div>
 
-      <h1 className="header">Registered Lessons</h1>
+      <div className="registered-lessons-container">
+        <div className="header">
+          <h1>Registered Lessons</h1>
+        </div>
 
-      <div className="registered-lessons">
-        <TableContainer component={Paper}>
-          <Table
-            sx={{ minWidth: 1100, maxWidth: 1250 }}
-            aria-label="customized table"
-          >
-            <TableHead>
-              <TableRow>
-                <StyledTableCell align="center">Sport</StyledTableCell>
-                <StyledTableCell align="center">Region</StyledTableCell>
-                <StyledTableCell align="center">
-                  Years of Coaching Exp.
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  Hourly Rate&nbsp;($)
-                </StyledTableCell>
-                <StyledTableCell align="center">Description</StyledTableCell>
-                <StyledTableCell align="center"></StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {registeredLessons.length === 0 ? (
-                <StyledTableRow>
-                  <StyledTableCell align="center" colSpan={6}>
-                    No Registered Lessons
+        <div className="registered-lessons">
+          <TableContainer component={Paper}>
+            <Table
+              sx={{ minWidth: 1100, maxWidth: 1250 }}
+              aria-label="customized table"
+            >
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell align="center">Sport</StyledTableCell>
+                  <StyledTableCell align="center">Region</StyledTableCell>
+                  <StyledTableCell align="center">
+                    Years of Coaching Exp.
                   </StyledTableCell>
-                </StyledTableRow>
-              ) : (
-                registeredLessons.map((lesson) => (
-                  <StyledTableRow key={lesson.id}>
-                    <StyledTableCell align="center">
-                      {lesson.sport}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {lesson.region}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {lesson.coachExp}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {lesson.hourlyRate}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {lesson.description}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      <Button
-                        onClick={() =>
-                          setConfirmDialog({
-                            isOpen: true,
-                            title: "Are you sure to withdraw from this Lesson?",
-                            subTitle: "You can't undo this operation",
-                            onConfirm: () => {
-                              withdrawFromLesson(lesson.id);
-                            },
-                          })
-                        }
-                        variant="outlined"
-                        color="error"
-                      >
-                        Withdraw
-                      </Button>
+                  <StyledTableCell align="center">
+                    Hourly Rate&nbsp;($)
+                  </StyledTableCell>
+                  <StyledTableCell align="center">Description</StyledTableCell>
+                  <StyledTableCell align="center"></StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {registeredLessons.length === 0 ? (
+                  <StyledTableRow>
+                    <StyledTableCell align="center" colSpan={6}>
+                      No Registered Lessons
                     </StyledTableCell>
                   </StyledTableRow>
-                ))
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
-
-      <h1 className="header">Organised Social Hangouts</h1>
-
-      <div className="organised-hangouts">
-        <TableContainer component={Paper}>
-          <Table
-            sx={{ minWidth: 1200, maxWidth: 1350 }}
-            aria-label="customized table"
-          >
-            <TableHead>
-              <TableRow>
-                <StyledTableCell align="center">Sport</StyledTableCell>
-                <StyledTableCell align="center">Region</StyledTableCell>
-                <StyledTableCell align="center">Location</StyledTableCell>
-                <StyledTableCell align="center">Date</StyledTableCell>
-                <StyledTableCell align="center">Time</StyledTableCell>
-                <StyledTableCell align="center">
-                  Experience Level
-                </StyledTableCell>
-                <StyledTableCell align="center">Description</StyledTableCell>
-                <StyledTableCell align="center"></StyledTableCell>
-                <StyledTableCell align="center"></StyledTableCell>
-                <StyledTableCell align="center"></StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {hangouts.length === 0 ? (
-                <StyledTableRow>
-                  <StyledTableCell align="center" colSpan={10}>
-                    No Organised Social Hangouts
-                  </StyledTableCell>
-                </StyledTableRow>
-              ) : (
-                hangouts.map((hangout) => (
-                  <StyledTableRow key={hangout.id}>
-                    <StyledTableCell align="center">
-                      {hangout.sport}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {hangout.region}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {hangout.location}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {hangout.date}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {hangout.time}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {hangout.expLevel}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {hangout.description}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      <a
-                        href={`/hangout-registered-users?hangoutId=${hangout.id}`}
+                ) : (
+                  registeredLessons.map((lesson) => (
+                    <StyledTableRow key={lesson.id}>
+                      <StyledTableCell align="center">
+                        {lesson.sport}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {lesson.region}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {lesson.coachExp}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {lesson.hourlyRate}
+                      </StyledTableCell>
+                      <StyledTableCell
+                        align="center"
+                        style={{ width: "500px" }}
                       >
-                        <Button variant="contained">
-                          View Registered Users
+                        {lesson.description}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        <Button
+                          onClick={() =>
+                            setConfirmDialog({
+                              isOpen: true,
+                              title:
+                                "Are you sure to withdraw from this Lesson?",
+                              subTitle: "You can't undo this operation",
+                              onConfirm: () => {
+                                withdrawFromLesson(lesson.id);
+                              },
+                            })
+                          }
+                          variant="outlined"
+                          color="error"
+                          style={{ width: "100px", fontSize: "12px" }}
+                        >
+                          Withdraw
                         </Button>
-                      </a>
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      <a
-                        href={`/update-socialhangout-form?hangoutId=${hangout.id}`}
-                      >
-                        <Button variant="outlined">Update</Button>
-                      </a>
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      <Button
-                        onClick={() =>
-                          setConfirmDialog({
-                            isOpen: true,
-                            title:
-                              "Are you sure to delete this Social Hangout Activity?",
-                            subTitle: "You can't undo this operation",
-                            onConfirm: () => {
-                              deleteHangout(hangout.id);
-                            },
-                          })
-                        }
-                        variant="outlined"
-                        color="error"
-                      >
-                        Delete
-                      </Button>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
       </div>
 
-      <h1 className="header">Registered Social Hangouts</h1>
+      <div className="organised-hangouts-container">
+        <div className="header">
+          <h1>Organised Social Hangouts</h1>
+        </div>
 
-      <div className="registered-hangouts">
-        <TableContainer component={Paper}>
-          <Table
-            sx={{ minWidth: 1200, maxWidth: 1350 }}
-            aria-label="customized table"
-          >
-            <TableHead>
-              <TableRow>
-                <StyledTableCell align="center">Sport</StyledTableCell>
-                <StyledTableCell align="center">Region</StyledTableCell>
-                <StyledTableCell align="center">Location</StyledTableCell>
-                <StyledTableCell align="center">Date</StyledTableCell>
-                <StyledTableCell align="center">Time</StyledTableCell>
-                <StyledTableCell align="center">
-                  Experience Level
-                </StyledTableCell>
-                <StyledTableCell align="center">Description</StyledTableCell>
-                <StyledTableCell align="center"></StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {registeredHangouts.length === 0 ? (
-                <StyledTableRow>
-                  <StyledTableCell align="center" colSpan={8}>
-                    No Registered Social Hangouts
+        <div className="organised-hangouts">
+          <TableContainer component={Paper}>
+            <Table
+              sx={{ minWidth: 1200, maxWidth: 1350 }}
+              aria-label="customized table"
+            >
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell align="center">Sport</StyledTableCell>
+                  <StyledTableCell align="center">Region</StyledTableCell>
+                  <StyledTableCell align="center">Location</StyledTableCell>
+                  <StyledTableCell align="center">Date</StyledTableCell>
+                  <StyledTableCell align="center">Time</StyledTableCell>
+                  <StyledTableCell align="center">
+                    Experience Level
                   </StyledTableCell>
-                </StyledTableRow>
-              ) : (
-                registeredHangouts.map((hangout) => (
-                  <StyledTableRow key={hangout.id}>
-                    <StyledTableCell align="center">
-                      {hangout.sport}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {hangout.region}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {hangout.location}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {hangout.date}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {hangout.time}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {hangout.expLevel}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {hangout.description}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      <Button
-                        onClick={() =>
-                          setConfirmDialog({
-                            isOpen: true,
-                            title:
-                              "Are you sure to withdraw from this Social Hangout Activity?",
-                            subTitle: "You can't undo this operation",
-                            onConfirm: () => {
-                              withdrawFromHangout(hangout.id);
-                            },
-                          })
-                        }
-                        variant="outlined"
-                        color="error"
-                      >
-                        Withdraw
-                      </Button>
+                  <StyledTableCell align="center">Description</StyledTableCell>
+                  <StyledTableCell align="center"></StyledTableCell>
+                  <StyledTableCell align="center"></StyledTableCell>
+                  <StyledTableCell align="center"></StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {hangouts.length === 0 ? (
+                  <StyledTableRow>
+                    <StyledTableCell align="center" colSpan={10}>
+                      No Organised Social Hangouts
                     </StyledTableCell>
                   </StyledTableRow>
-                ))
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
+                ) : (
+                  hangouts.map((hangout) => (
+                    <StyledTableRow key={hangout.id}>
+                      <StyledTableCell align="center">
+                        {hangout.sport}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {hangout.region}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {hangout.location}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {hangout.date}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {hangout.time}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {hangout.expLevel}
+                      </StyledTableCell>
+                      <StyledTableCell
+                        align="center"
+                        style={{ width: "400px" }}
+                      >
+                        {hangout.description}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        <a
+                          href={`/hangout-registered-users?hangoutId=${hangout.id}`}
+                        >
+                          <Button
+                            variant="contained"
+                            style={{ width: "110px", fontSize: "12px" }}
+                          >
+                            View Registered Users
+                          </Button>
+                        </a>
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        <a
+                          href={`/update-socialhangout-form?hangoutId=${hangout.id}`}
+                        >
+                          <Button
+                            variant="outlined"
+                            style={{ width: "100px", fontSize: "12px" }}
+                          >
+                            Update
+                          </Button>
+                        </a>
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        <Button
+                          onClick={() =>
+                            setConfirmDialog({
+                              isOpen: true,
+                              title:
+                                "Are you sure to delete this Social Hangout Activity?",
+                              subTitle: "You can't undo this operation",
+                              onConfirm: () => {
+                                deleteHangout(hangout.id);
+                              },
+                            })
+                          }
+                          variant="outlined"
+                          color="error"
+                          style={{ width: "100px", fontSize: "12px" }}
+                        >
+                          Delete
+                        </Button>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
+      </div>
+
+      <div className="registered-hangouts-container">
+        <div className="header">
+          <h1>Registered Social Hangouts</h1>
+        </div>
+
+        <div className="registered-hangouts">
+          <TableContainer component={Paper}>
+            <Table
+              sx={{ minWidth: 1200, maxWidth: 1350 }}
+              aria-label="customized table"
+            >
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell align="center">Sport</StyledTableCell>
+                  <StyledTableCell align="center">Region</StyledTableCell>
+                  <StyledTableCell align="center">Location</StyledTableCell>
+                  <StyledTableCell align="center">Date</StyledTableCell>
+                  <StyledTableCell align="center">Time</StyledTableCell>
+                  <StyledTableCell align="center">
+                    Experience Level
+                  </StyledTableCell>
+                  <StyledTableCell align="center">Description</StyledTableCell>
+                  <StyledTableCell align="center"></StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {registeredHangouts.length === 0 ? (
+                  <StyledTableRow>
+                    <StyledTableCell align="center" colSpan={8}>
+                      No Registered Social Hangouts
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ) : (
+                  registeredHangouts.map((hangout) => (
+                    <StyledTableRow key={hangout.id}>
+                      <StyledTableCell align="center">
+                        {hangout.sport}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {hangout.region}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {hangout.location}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {hangout.date}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {hangout.time}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {hangout.expLevel}
+                      </StyledTableCell>
+                      <StyledTableCell
+                        align="center"
+                        style={{ width: "500px" }}
+                      >
+                        {hangout.description}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        <Button
+                          onClick={() =>
+                            setConfirmDialog({
+                              isOpen: true,
+                              title:
+                                "Are you sure to withdraw from this Social Hangout Activity?",
+                              subTitle: "You can't undo this operation",
+                              onConfirm: () => {
+                                withdrawFromHangout(hangout.id);
+                              },
+                            })
+                          }
+                          variant="outlined"
+                          color="error"
+                          style={{ width: "100px", fontSize: "12px" }}
+                        >
+                          Withdraw
+                        </Button>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
       </div>
 
       <Notification notify={notify} setNotify={setNotify} />

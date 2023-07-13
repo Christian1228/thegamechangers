@@ -36,7 +36,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div className="app">
       {authUser ? (
         <Router>
           <Navbar />
@@ -77,7 +77,7 @@ function App() {
           </Routes>
         </Router>
       )}
-    </>
+    </div>
   );
 }
 
