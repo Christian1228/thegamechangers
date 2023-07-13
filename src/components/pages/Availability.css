@@ -2,6 +2,7 @@
 .available-hangouts {
   display: flex;
   flex-flow: column;
+  background-image: linear-gradient(79deg, #9fa5ff, #c5f8ff, #9fa5ff);
 }
 
 .top-section {

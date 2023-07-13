@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-image: linear-gradient(79deg, #9fa5ff, #c5f8ff, #9fa5ff);
 }
 
 .organised-lessons,
@@ -13,6 +14,7 @@
   left: 50%;
   padding: 20px;
   padding-top: 0;
+  width: 1250px;
 }
 
 .organised-lessons-container,
