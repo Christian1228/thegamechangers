@@ -258,21 +258,29 @@ export default function UpcomingEvents() {
                     <StyledTableCell align="center">
                       {lesson.hourlyRate}
                     </StyledTableCell>
-                    <StyledTableCell align="center">
+                    <StyledTableCell align="center" style={{ width: "400px" }}>
                       {lesson.description}
                     </StyledTableCell>
                     <StyledTableCell align="center">
                       <a
                         href={`/lesson-registered-users?lessonId=${lesson.id}`}
                       >
-                        <Button variant="contained">
+                        <Button
+                          variant="contained"
+                          style={{ width: "110px", fontSize: "12px" }}
+                        >
                           View Registered Users
                         </Button>
                       </a>
                     </StyledTableCell>
                     <StyledTableCell align="center">
                       <a href={`/update-lesson-form?lessonId=${lesson.id}`}>
-                        <Button variant="outlined">Update</Button>
+                        <Button
+                          variant="outlined"
+                          style={{ width: "100px", fontSize: "12px" }}
+                        >
+                          Update
+                        </Button>
                       </a>
                     </StyledTableCell>
                     <StyledTableCell align="center">
@@ -289,6 +297,7 @@ export default function UpcomingEvents() {
                         }
                         variant="outlined"
                         color="error"
+                        style={{ width: "100px", fontSize: "12px" }}
                       >
                         Delete
                       </Button>
@@ -345,7 +354,7 @@ export default function UpcomingEvents() {
                     <StyledTableCell align="center">
                       {lesson.hourlyRate}
                     </StyledTableCell>
-                    <StyledTableCell align="center">
+                    <StyledTableCell align="center" style={{ width: "500px" }}>
                       {lesson.description}
                     </StyledTableCell>
                     <StyledTableCell align="center">
@@ -362,6 +371,7 @@ export default function UpcomingEvents() {
                         }
                         variant="outlined"
                         color="error"
+                        style={{ width: "100px", fontSize: "12px" }}
                       >
                         Withdraw
                       </Button>
@@ -426,14 +436,17 @@ export default function UpcomingEvents() {
                     <StyledTableCell align="center">
                       {hangout.expLevel}
                     </StyledTableCell>
-                    <StyledTableCell align="center">
+                    <StyledTableCell align="center" style={{ width: "400px" }}>
                       {hangout.description}
                     </StyledTableCell>
                     <StyledTableCell align="center">
                       <a
                         href={`/hangout-registered-users?hangoutId=${hangout.id}`}
                       >
-                        <Button variant="contained">
+                        <Button
+                          variant="contained"
+                          style={{ width: "110px", fontSize: "12px" }}
+                        >
                           View Registered Users
                         </Button>
                       </a>
@@ -442,7 +455,12 @@ export default function UpcomingEvents() {
                       <a
                         href={`/update-socialhangout-form?hangoutId=${hangout.id}`}
                       >
-                        <Button variant="outlined">Update</Button>
+                        <Button
+                          variant="outlined"
+                          style={{ width: "100px", fontSize: "12px" }}
+                        >
+                          Update
+                        </Button>
                       </a>
                     </StyledTableCell>
                     <StyledTableCell align="center">
@@ -460,6 +478,7 @@ export default function UpcomingEvents() {
                         }
                         variant="outlined"
                         color="error"
+                        style={{ width: "100px", fontSize: "12px" }}
                       >
                         Delete
                       </Button>
@@ -522,7 +541,7 @@ export default function UpcomingEvents() {
                     <StyledTableCell align="center">
                       {hangout.expLevel}
                     </StyledTableCell>
-                    <StyledTableCell align="center">
+                    <StyledTableCell align="center" style={{ width: "500px" }}>
                       {hangout.description}
                     </StyledTableCell>
                     <StyledTableCell align="center">
@@ -540,6 +559,7 @@ export default function UpcomingEvents() {
                         }
                         variant="outlined"
                         color="error"
+                        style={{ width: "100px", fontSize: "12px" }}
                       >
                         Withdraw
                       </Button>
