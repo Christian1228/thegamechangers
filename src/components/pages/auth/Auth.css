@@ -48,6 +48,13 @@ input {
   border-radius: 10px;
 }
 
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+}
+
 button {
   border: none;
   background-color: white;

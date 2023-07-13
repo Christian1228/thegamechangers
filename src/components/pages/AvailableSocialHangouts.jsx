@@ -12,6 +12,7 @@ import {
   doc,
 } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import Button from "@mui/material/Button";
 
 function AvailableSocialHangouts() {
   const [hangouts, setHangouts] = useState([]);
@@ -224,9 +225,12 @@ function AvailableSocialHangouts() {
 
               <div className="register-button">
                 {hangout.registeredUsers.includes(auth.currentUser.uid) ? (
-                  <button disabled="disabled">Registered</button>
+                  <Button variant="contained" disabled>
+                    Registered
+                  </Button>
                 ) : (
-                  <button
+                  <Button
+                    variant="contained"
                     onClick={(e) => {
                       e.preventDefault();
                       updateRegisteredUsers(
@@ -238,7 +242,7 @@ function AvailableSocialHangouts() {
                     }}
                   >
                     Register
-                  </button>
+                  </Button>
                 )}
               </div>
             </div>

@@ -39,9 +39,14 @@ function Navbar() {
     <>
       <nav className="navbar">
         <div className="navbar-container">
-          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            The Game Changers
-          </Link>
+          <div className="navbar-logo">
+            <div className="cover-logo-container">
+              <img className="cover-logo" src="./images/Logo.png" alt="" />
+            </div>
+            <Link to="/" onClick={closeMobileMenu} className="navbar-name">
+              The Game Changers
+            </Link>
+          </div>
           <div className="menu-icon" onClick={handleClick}>
             <i className={click ? "fas fa-times" : "fas fa-bars"} />
           </div>

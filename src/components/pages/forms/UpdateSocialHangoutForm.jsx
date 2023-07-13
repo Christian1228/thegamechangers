@@ -4,6 +4,7 @@ import "./Form.css";
 import { db } from "../../../config/firebase";
 import { getDoc, updateDoc, doc } from "firebase/firestore";
 import { useLocation, useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 function UpdateSocialHangoutForm() {
   const location = useLocation();
@@ -196,7 +197,14 @@ function UpdateSocialHangoutForm() {
           </div>
 
           <div className="button">
-            <button onClick={updateHangout}>Update Activity</button>
+            <Button
+              onClick={updateHangout}
+              variant="contained"
+              color="success"
+              style={{ height: "40px", lineHeight: "40px", fontSize: "15px" }}
+            >
+              Update Activity
+            </Button>
           </div>
         </div>
       </div>
