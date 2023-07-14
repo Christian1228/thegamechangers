@@ -140,10 +140,11 @@ function UpdateLessonForm() {
             <b>
               <label htmlFor="description">Description</label>
             </b>
-            <input
+            <textarea
               placeholder="Description..."
               value={updatedDescription}
               onChange={(e) => setUpdatedDescription(e.target.value)}
+              className="description"
             />
           </div>
 

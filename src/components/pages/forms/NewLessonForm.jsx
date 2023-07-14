@@ -105,9 +105,10 @@ export default function LessonForm() {
             <b>
               <label for="description">Description</label>
             </b>
-            <input
+            <textarea
               placeholder="Description..."
               onChange={(e) => setNewDescription(e.target.value)}
+              className="description"
             />
           </div>
 
