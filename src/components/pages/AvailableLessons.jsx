@@ -156,99 +156,105 @@ function AvailableLessons() {
         </div>
 
         <div className="body">
-          {lessons.map((lesson) => {
-            const profile = profiles[lesson.id];
-            return (
-              <div className="lesson-card">
-                <div className="lesson-info">
-                  <div key={lesson.id}>
-                    <div className="lesson-sub-info">
-                      <div className="coach-info">
+          {lessons.length === 0 ? (
+            <div className="empty-info">No Available Lessons</div>
+          ) : (
+            lessons.map((lesson) => {
+              const profile = profiles[lesson.id];
+              return (
+                <div className="lesson-card">
+                  <div className="lesson-info">
+                    <div key={lesson.id}>
+                      <div className="lesson-sub-info">
+                        <div className="coach-info">
+                          <div className="card-labels">
+                            <b>
+                              <label htmlFor="name">Coach's Name:</label>
+                            </b>
+                          </div>
+                          <div>{profile && profile.name}</div>
+                        </div>
+
+                        <div className="lesson-other-info">
+                          <div className="card-contents">
+                            <div className="card-labels">
+                              <b>
+                                <label htmlFor="sport">Sport:</label>
+                              </b>
+                            </div>
+                            <div>{lesson.sport}</div>
+                          </div>
+
+                          <div className="card-contents">
+                            <div className="card-labels">
+                              <b>
+                                <label htmlFor="region">Region:</label>
+                              </b>
+                            </div>
+                            <div>{lesson.region}</div>
+                          </div>
+
+                          <div className="card-contents">
+                            <div className="card-labels">
+                              <b>
+                                <label htmlFor="coach-exp">
+                                  Years of Coaching Exp.:
+                                </label>
+                              </b>
+                            </div>
+                            <div>{lesson.coachExp}</div>
+                          </div>
+
+                          <div className="card-contents">
+                            <div className="card-labels">
+                              <b>
+                                <label htmlFor="hourly-rate">
+                                  Hourly Rate:
+                                </label>
+                              </b>
+                            </div>
+                            <div>{lesson.hourlyRate}</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="card-contents">
                         <div className="card-labels">
                           <b>
-                            <label htmlFor="name">Coach's Name:</label>
+                            <label htmlFor="description">Description:</label>
                           </b>
                         </div>
-                        <div>{profile && profile.name}</div>
+                        <div>{lesson.description}</div>
                       </div>
-
-                      <div className="lesson-other-info">
-                        <div className="card-contents">
-                          <div className="card-labels">
-                            <b>
-                              <label htmlFor="sport">Sport:</label>
-                            </b>
-                          </div>
-                          <div>{lesson.sport}</div>
-                        </div>
-
-                        <div className="card-contents">
-                          <div className="card-labels">
-                            <b>
-                              <label htmlFor="region">Region:</label>
-                            </b>
-                          </div>
-                          <div>{lesson.region}</div>
-                        </div>
-
-                        <div className="card-contents">
-                          <div className="card-labels">
-                            <b>
-                              <label htmlFor="coach-exp">
-                                Years of Coaching Exp.:
-                              </label>
-                            </b>
-                          </div>
-                          <div>{lesson.coachExp}</div>
-                        </div>
-
-                        <div className="card-contents">
-                          <div className="card-labels">
-                            <b>
-                              <label htmlFor="hourly-rate">Hourly Rate:</label>
-                            </b>
-                          </div>
-                          <div>{lesson.hourlyRate}</div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="card-contents">
-                      <div className="card-labels">
-                        <b>
-                          <label htmlFor="description">Description:</label>
-                        </b>
-                      </div>
-                      <div>{lesson.description}</div>
                     </div>
                   </div>
-                </div>
 
-                <div className="register-button">
-                  {lesson.registeredUsers.includes(auth.currentUser.uid) ? (
-                    <Button variant="contained" disabled>
-                      Registered
-                    </Button>
-                  ) : (
-                    <Button
-                      variant="contained"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        updateRegisteredUsers(
-                          auth.currentUser.uid,
-                          lesson.id
-                        ).then(() => {
-                          window.location.href = "/upcoming-events";
-                        });
-                      }}
-                    >
-                      Register
-                    </Button>
-                  )}
+                  <div className="register-button">
+                    {lesson.registeredUsers.includes(auth.currentUser.uid) ? (
+                      <Button variant="contained" disabled>
+                        Registered
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="contained"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          updateRegisteredUsers(
+                            auth.currentUser.uid,
+                            lesson.id
+                          ).then(() => {
+                            window.location.href = "/upcoming-events";
+                          });
+                        }}
+                      >
+                        Register
+                      </Button>
+                    )}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })
+          )}
         </div>
       </div>
     </div>
