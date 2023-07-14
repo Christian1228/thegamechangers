@@ -17,6 +17,7 @@
   background-color: #dfdfdf;
   margin: 15px;
   border-radius: 20px;
+  border: 1px solid rgb(0, 100, 139);
 }
 
 .organised-lessons,

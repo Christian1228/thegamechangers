@@ -118,7 +118,7 @@ function AvailableSocialHangouts() {
     <div className="available-hangouts-container">
       <div className="available-hangouts">
         <div className="top-section">
-          <div className="header">
+          <div className="avail-header">
             <h1>Available Social Hangouts</h1>
           </div>
 

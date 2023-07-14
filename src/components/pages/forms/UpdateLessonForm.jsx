@@ -85,7 +85,7 @@ function UpdateLessonForm() {
   }, [lesson]);
 
   return (
-    <>
+    <div className="form-container">
       <div className="form">
         <h1 className="new-form">Update Coaching Lesson</h1>
 
@@ -172,7 +172,7 @@ function UpdateLessonForm() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

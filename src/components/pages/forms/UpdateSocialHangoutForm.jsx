@@ -94,7 +94,7 @@ function UpdateSocialHangoutForm() {
   }, [hangout]);
 
   return (
-    <>
+    <div className="form-container">
       <div className="form">
         <h1 className="new-form">Update Social Hangout Activity</h1>
 
@@ -209,7 +209,7 @@ function UpdateSocialHangoutForm() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
