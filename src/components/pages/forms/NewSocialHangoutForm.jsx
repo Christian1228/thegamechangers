@@ -58,7 +58,7 @@ export default function NewSocialHangout() {
   };
 
   return (
-    <>
+    <div className="form-container">
       <div className="form">
         <h1 className="new-form">Start a New Social Hangout Activity</h1>
 
@@ -165,6 +165,6 @@ export default function NewSocialHangout() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
