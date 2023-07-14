@@ -116,7 +116,7 @@ function AvailableLessons() {
     <div className="available-classes-container">
       <div className="available-classes">
         <div className="top-section">
-          <div className="header">
+          <div className="avail-header">
             <h1>Available Classes</h1>
           </div>
 

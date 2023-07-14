@@ -24,12 +24,12 @@
   margin-bottom: 10px;
 }
 
-.header {
+.avail-header {
   display: flex;
   justify-content: flex-start;
   padding: 0;
   margin-left: 50px;
-  background-color: rgb(84, 164, 255);
+  background-color: rgb(75, 144, 223);
   border-radius: 20px;
   padding: 5px;
   padding-left: 15px;
