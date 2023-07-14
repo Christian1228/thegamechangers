@@ -53,7 +53,7 @@ export default function LessonForm() {
   };
 
   return (
-    <>
+    <div className="form-container">
       <div className="form">
         <h1 className="new-form">Start a New Coaching Lesson</h1>
 
@@ -105,9 +105,10 @@ export default function LessonForm() {
             <b>
               <label for="description">Description</label>
             </b>
-            <input
+            <textarea
               placeholder="Description..."
               onChange={(e) => setNewDescription(e.target.value)}
+              className="description"
             />
           </div>
 
@@ -134,6 +135,6 @@ export default function LessonForm() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

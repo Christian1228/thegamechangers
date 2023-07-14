@@ -85,7 +85,7 @@ function UpdateLessonForm() {
   }, [lesson]);
 
   return (
-    <>
+    <div className="form-container">
       <div className="form">
         <h1 className="new-form">Update Coaching Lesson</h1>
 
@@ -140,10 +140,11 @@ function UpdateLessonForm() {
             <b>
               <label htmlFor="description">Description</label>
             </b>
-            <input
+            <textarea
               placeholder="Description..."
               value={updatedDescription}
               onChange={(e) => setUpdatedDescription(e.target.value)}
+              className="description"
             />
           </div>
 
@@ -171,7 +172,7 @@ function UpdateLessonForm() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

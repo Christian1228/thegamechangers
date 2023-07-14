@@ -213,7 +213,7 @@ export default function UpcomingEvents() {
   return (
     <div className="upcoming-events">
       <div className="organised-lessons-container">
-        <div className="header">
+        <div className="events-header">
           <h1>Organised Classes</h1>
         </div>
 
@@ -318,7 +318,7 @@ export default function UpcomingEvents() {
       </div>
 
       <div className="registered-lessons-container">
-        <div className="header">
+        <div className="events-header">
           <h1>Registered Lessons</h1>
         </div>
 
@@ -400,7 +400,7 @@ export default function UpcomingEvents() {
       </div>
 
       <div className="organised-hangouts-container">
-        <div className="header">
+        <div className="events-header">
           <h1>Organised Social Hangouts</h1>
         </div>
 
@@ -514,7 +514,7 @@ export default function UpcomingEvents() {
       </div>
 
       <div className="registered-hangouts-container">
-        <div className="header">
+        <div className="events-header">
           <h1>Registered Social Hangouts</h1>
         </div>
 

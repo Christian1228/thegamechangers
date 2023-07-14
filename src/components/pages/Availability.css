@@ -1,26 +1,46 @@
+.available-classes-container,
+.available-hangouts-container {
+  background-image: linear-gradient(79deg, #9fa5ff, #c5f8ff, #9fa5ff);
+  padding-bottom: 50px;
+}
+
 .available-classes,
 .available-hangouts {
   display: flex;
   flex-flow: column;
-  background-image: linear-gradient(79deg, #9fa5ff, #c5f8ff, #9fa5ff);
+  background-color: #dfdfdf;
+  width: 80%;
+  border-radius: 20px;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 20px;
+  min-width: 630px;
+  border: 1px solid rgb(0, 100, 139);
 }
 
 .top-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
 }
 
-.header {
+.avail-header {
   display: flex;
   justify-content: flex-start;
   padding: 0;
-  margin-left: 10px;
+  margin-left: 50px;
+  background-color: rgb(75, 144, 223);
+  border-radius: 20px;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .filters {
   display: flex;
   justify-content: flex-end;
+  margin-right: 50px;
 }
 
 .filter {
@@ -34,6 +54,7 @@
 .body {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .lesson-card,
@@ -46,6 +67,7 @@
   margin: 5px;
   max-width: 250px;
   min-width: 250px;
+  background-color: rgb(223, 249, 255);
 }
 
 .lesson-info,
@@ -66,10 +88,29 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin: 8px;
 }
 
 .register-button {
   display: flex;
   justify-content: center;
   margin: 10px;
+}
+
+.filter-labels {
+  background-color: #89cff0;
+  padding-left: 4px;
+  border-radius: 10px;
+}
+
+.card-contents {
+  margin: 8px;
+}
+
+.card-labels label {
+  display: inline-block;
+  background-color: #ffffff;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 10px;
 }

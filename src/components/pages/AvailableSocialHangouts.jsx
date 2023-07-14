@@ -115,139 +115,165 @@ function AvailableSocialHangouts() {
   }, [hangouts]);
 
   return (
-    <div className="available-hangouts">
-      <div className="top-section">
-        <h1 className="header">Available Social Hangouts</h1>
-
-        <div className="filters">
-          <div className="filter">
-            <label htmlFor="sportFilter" className="filter-labels">
-              Sport:
-            </label>
-            <select
-              id="sportFilter"
-              value={selectedSport}
-              onChange={(e) => setSelectedSport(e.target.value)}
-            >
-              <option value="">All Sports</option>
-              {sportData.map((op) => (
-                <option>{op}</option>
-              ))}
-            </select>
+    <div className="available-hangouts-container">
+      <div className="available-hangouts">
+        <div className="top-section">
+          <div className="avail-header">
+            <h1>Available Social Hangouts</h1>
           </div>
 
-          <div className="filter">
-            <label htmlFor="regionFilter" className="filter-labels">
-              Region:
-            </label>
-            <select
-              id="regionFilter"
-              value={selectedRegion}
-              onChange={(e) => setSelectedRegion(e.target.value)}
-            >
-              <option value="">All Regions</option>
-              {regionData.map((op) => (
-                <option>{op}</option>
-              ))}
-            </select>
+          <div className="filters">
+            <div className="filter">
+              <label htmlFor="sportFilter" className="filter-labels">
+                Sport:
+              </label>
+              <select
+                id="sportFilter"
+                value={selectedSport}
+                onChange={(e) => setSelectedSport(e.target.value)}
+              >
+                <option value="">All Sports</option>
+                {sportData.map((op) => (
+                  <option>{op}</option>
+                ))}
+              </select>
+            </div>
+
+            <div className="filter">
+              <label htmlFor="regionFilter" className="filter-labels">
+                Region:
+              </label>
+              <select
+                id="regionFilter"
+                value={selectedRegion}
+                onChange={(e) => setSelectedRegion(e.target.value)}
+              >
+                <option value="">All Regions</option>
+                {regionData.map((op) => (
+                  <option>{op}</option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="body">
-        {hangouts.map((hangout) => {
-          const profile = profiles[hangout.id];
-          return (
-            <div className="hangout-card">
-              <div className="hangout-info">
-                <div key={hangout.id}>
-                  <div className="hangout-sub-info">
-                    <div className="organiser-info">
-                      <b>
-                        <label htmlFor="name">Organizer's Name:</label>
-                      </b>
-                      <div>{profile && profile.name}</div>
-                    </div>
+        <div className="body">
+          {hangouts.length === 0 ? (
+            <div className="empty-info">No Available Social Hangouts</div>
+          ) : (
+            hangouts.map((hangout) => {
+              const profile = profiles[hangout.id];
+              return (
+                <div className="hangout-card">
+                  <div className="hangout-info">
+                    <div key={hangout.id}>
+                      <div className="hangout-sub-info">
+                        <div className="organiser-info">
+                          <div className="card-labels">
+                            <b>
+                              <label htmlFor="name">Organiser's Name:</label>
+                            </b>
+                          </div>
+                          <div>{profile && profile.name}</div>
+                        </div>
 
-                    <div className="hangout-other-info">
-                      <div>
-                        <b>
-                          <label htmlFor="sport">Sport:</label>
-                        </b>
-                        <div>{hangout.sport}</div>
+                        <div className="hangout-other-info">
+                          <div className="card-contents">
+                            <div className="card-labels">
+                              <b>
+                                <label htmlFor="sport">Sport:</label>
+                              </b>
+                            </div>
+                            <div>{hangout.sport}</div>
+                          </div>
+
+                          <div className="card-contents">
+                            <div className="card-labels">
+                              <b>
+                                <label htmlFor="region">Region:</label>
+                              </b>
+                            </div>
+                            <div>{hangout.region}</div>
+                          </div>
+
+                          <div className="card-contents">
+                            <div className="card-labels">
+                              <b>
+                                <label htmlFor="location">Location:</label>
+                              </b>
+                            </div>
+                            <div>{hangout.location}</div>
+                          </div>
+
+                          <div className="card-contents">
+                            <div className="card-labels">
+                              <b>
+                                <label htmlFor="date">Date:</label>
+                              </b>
+                            </div>
+                            <div>{hangout.date}</div>
+                          </div>
+
+                          <div className="card-contents">
+                            <div className="card-labels">
+                              <b>
+                                <label htmlFor="time">Time:</label>
+                              </b>
+                            </div>
+                            <div>{hangout.time}</div>
+                          </div>
+
+                          <div className="card-contents">
+                            <div className="card-labels">
+                              <b>
+                                <label htmlFor="exp-level">
+                                  Experience Level:
+                                </label>
+                              </b>
+                            </div>
+                            <div>{hangout.expLevel}</div>
+                          </div>
+                        </div>
                       </div>
 
-                      <div>
-                        <b>
-                          <label htmlFor="region">Region:</label>
-                        </b>
-                        <div>{hangout.region}</div>
-                      </div>
-
-                      <div>
-                        <b>
-                          <label htmlFor="location">Location:</label>
-                        </b>
-                        <div>{hangout.location}</div>
-                      </div>
-
-                      <div>
-                        <b>
-                          <label htmlFor="date">Date:</label>
-                        </b>
-                        <div>{hangout.date}</div>
-                      </div>
-
-                      <div>
-                        <b>
-                          <label htmlFor="time">Time:</label>
-                        </b>
-                        <div>{hangout.time}</div>
-                      </div>
-
-                      <div>
-                        <b>
-                          <label htmlFor="exp-level">Experience Level:</label>
-                        </b>
-                        <div>{hangout.expLevel}</div>
+                      <div className="card-contents">
+                        <div className="card-labels">
+                          <b>
+                            <label htmlFor="description">Description:</label>
+                          </b>
+                        </div>
+                        <div>{hangout.description}</div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="hangout-description">
-                    <b>
-                      <label htmlFor="description">Description:</label>
-                    </b>
-                    <div>{hangout.description}</div>
+                  <div className="register-button">
+                    {hangout.registeredUsers.includes(auth.currentUser.uid) ? (
+                      <Button variant="contained" disabled>
+                        Registered
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="contained"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          updateRegisteredUsers(
+                            auth.currentUser.uid,
+                            hangout.id
+                          ).then(() => {
+                            window.location.href = "/upcoming-events";
+                          });
+                        }}
+                      >
+                        Register
+                      </Button>
+                    )}
                   </div>
                 </div>
-              </div>
-
-              <div className="register-button">
-                {hangout.registeredUsers.includes(auth.currentUser.uid) ? (
-                  <Button variant="contained" disabled>
-                    Registered
-                  </Button>
-                ) : (
-                  <Button
-                    variant="contained"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      updateRegisteredUsers(
-                        auth.currentUser.uid,
-                        hangout.id
-                      ).then(() => {
-                        window.location.href = "/upcoming-events";
-                      });
-                    }}
-                  >
-                    Register
-                  </Button>
-                )}
-              </div>
-            </div>
-          );
-        })}
+              );
+            })
+          )}
+        </div>
       </div>
     </div>
   );

@@ -108,104 +108,128 @@ function LessonRegisteredUsers() {
   }));
 
   return (
-    <div className="lesson-registered-users">
-      <h1>Coaching Lesson</h1>
+    <div className="lesson-registered-users-container">
+      <div className="chosen-lesson">
+        <div className="registered-users-headers">
+          <h1>Coaching Lesson</h1>
+        </div>
 
-      <div className="registered-lesson">
-        <TableContainer component={Paper}>
-          <Table
-            sx={{ minWidth: 1200, maxWidth: 1350 }}
-            aria-label="customized table"
-          >
-            <TableHead>
-              <TableRow>
-                <StyledTableCell align="center">Sport</StyledTableCell>
-                <StyledTableCell align="center">Region</StyledTableCell>
-                <StyledTableCell align="center">
-                  Years of Coaching Exp.
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  Hourly Rate&nbsp;($)
-                </StyledTableCell>
-                <StyledTableCell align="center">Description</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              <StyledTableRow>
-                <StyledTableCell align="center">{lesson.sport}</StyledTableCell>
-                <StyledTableCell align="center">
-                  {lesson.region}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  {lesson.coachExp}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  {lesson.hourlyRate}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  {lesson.description}
-                </StyledTableCell>
-              </StyledTableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <div className="registered-lesson">
+          <TableContainer component={Paper}>
+            <Table
+              sx={{ minWidth: 1200, maxWidth: 1350 }}
+              aria-label="customized table"
+            >
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell align="center">Sport</StyledTableCell>
+                  <StyledTableCell align="center">Region</StyledTableCell>
+                  <StyledTableCell align="center">
+                    Years of Coaching Exp.
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    Hourly Rate&nbsp;($)
+                  </StyledTableCell>
+                  <StyledTableCell align="center">Description</StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <StyledTableRow>
+                  <StyledTableCell align="center">
+                    {lesson.sport}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {lesson.region}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {lesson.coachExp}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {lesson.hourlyRate}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {lesson.description}
+                  </StyledTableCell>
+                </StyledTableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
       </div>
 
-      <h1>Registered Users</h1>
+      <div className="lesson-registered-users">
+        <div className="registered-users-headers">
+          <h1>Registered Users</h1>
+        </div>
 
-      <div className="users">
-        {registeredUsersProfiles.map((profile) => {
-          return (
-            <div className="user-card">
-              <div className="user-info">
-                <div className="user-sub-info">
-                  <div className="user-name">
-                    <b>
-                      <label for="name">Name</label>
-                    </b>
-                    <div>{profile.name}</div>
-                  </div>
+        <div className="users">
+          {registeredUsersProfiles.length === 0 ? (
+            <div className="empty-info">No Registered Users</div>
+          ) : (
+            registeredUsersProfiles.map((profile) => {
+              return (
+                <div className="user-card">
+                  <div className="user-info">
+                    <div className="user-sub-info">
+                      <div className="card-contents">
+                        <div className="card-labels">
+                          <b>
+                            <label for="name">Name</label>
+                          </b>
+                        </div>
+                        <div>{profile.name}</div>
+                      </div>
 
-                  <div className="user-other-info">
-                    <div>
-                      <b>
-                        <label for="gender">Gender</label>
-                      </b>
-                      <div>{profile.gender}</div>
+                      <div className="user-other-info">
+                        <div className="card-contents">
+                          <div className="card-labels">
+                            <b>
+                              <label for="gender">Gender</label>
+                            </b>
+                          </div>
+                          <div>{profile.gender}</div>
+                        </div>
+
+                        <div className="card-contents">
+                          <div className="card-labels">
+                            <b>
+                              <label for="dob">Date of Birth</label>
+                            </b>
+                          </div>
+                          <div>{profile.dateOfBirth}</div>
+                        </div>
+
+                        <div className="card-contents">
+                          <div className="card-labels">
+                            <b>
+                              <label for="teleTag">Telegram Tag</label>
+                            </b>
+                          </div>
+                          <div>{profile.teleTag}</div>
+                        </div>
+                      </div>
                     </div>
 
-                    <div>
-                      <b>
-                        <label for="dob">Date of Birth</label>
-                      </b>
-                      <div>{profile.dateOfBirth}</div>
-                    </div>
-
-                    <div>
-                      <b>
-                        <label for="teleTag">Telegram Tag</label>
-                      </b>
-                      <div>{profile.teleTag}</div>
+                    <div className="card-contents">
+                      <div className="card-labels">
+                        <b>
+                          <label for="experiences">Experiences</label>
+                        </b>
+                      </div>
+                      <div>{profile.experiences}</div>
                     </div>
                   </div>
                 </div>
+              );
+            })
+          )}
+        </div>
 
-                <div className="user-experiences">
-                  <b>
-                    <label for="experiences">Experiences</label>
-                  </b>
-                  <div>{profile.experiences}</div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-
-      <div className="return-button">
-        <a href="/upcoming-events">
-          <Button variant="contained">Return to your Upcoming Events</Button>
-        </a>
+        <div className="return-button">
+          <a href="/upcoming-events">
+            <Button variant="contained">Return to your Upcoming Events</Button>
+          </a>
+        </div>
       </div>
     </div>
   );
