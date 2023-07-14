@@ -25,6 +25,7 @@ h1 {
   margin: 5px;
   max-width: 230px;
   min-width: 230px;
+  background-color: rgb(223, 249, 255);
 }
 
 .user-info {
@@ -58,4 +59,16 @@ h1 {
 
 .return-button {
   margin: 20px;
+}
+
+.card-contents {
+  margin: 8px;
+}
+
+.card-labels label {
+  display: inline-block;
+  background-color: #ffffff;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 10px;
 }

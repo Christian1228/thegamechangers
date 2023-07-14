@@ -159,41 +159,51 @@ function LessonRegisteredUsers() {
             <div className="user-card">
               <div className="user-info">
                 <div className="user-sub-info">
-                  <div className="user-name">
-                    <b>
-                      <label for="name">Name</label>
-                    </b>
+                  <div className="card-contents">
+                    <div className="card-labels">
+                      <b>
+                        <label for="name">Name</label>
+                      </b>
+                    </div>
                     <div>{profile.name}</div>
                   </div>
 
                   <div className="user-other-info">
-                    <div>
-                      <b>
-                        <label for="gender">Gender</label>
-                      </b>
+                    <div className="card-contents">
+                      <div className="card-labels">
+                        <b>
+                          <label for="gender">Gender</label>
+                        </b>
+                      </div>
                       <div>{profile.gender}</div>
                     </div>
 
-                    <div>
-                      <b>
-                        <label for="dob">Date of Birth</label>
-                      </b>
+                    <div className="card-contents">
+                      <div className="card-labels">
+                        <b>
+                          <label for="dob">Date of Birth</label>
+                        </b>
+                      </div>
                       <div>{profile.dateOfBirth}</div>
                     </div>
 
-                    <div>
-                      <b>
-                        <label for="teleTag">Telegram Tag</label>
-                      </b>
+                    <div className="card-contents">
+                      <div className="card-labels">
+                        <b>
+                          <label for="teleTag">Telegram Tag</label>
+                        </b>
+                      </div>
                       <div>{profile.teleTag}</div>
                     </div>
                   </div>
                 </div>
 
-                <div className="user-experiences">
-                  <b>
-                    <label for="experiences">Experiences</label>
-                  </b>
+                <div className="card-contents">
+                  <div className="card-labels">
+                    <b>
+                      <label for="experiences">Experiences</label>
+                    </b>
+                  </div>
                   <div>{profile.experiences}</div>
                 </div>
               </div>
