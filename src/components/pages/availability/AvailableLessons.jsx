@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import "../../App.css";
+import "../../../App.css";
 import "./Availability.css";
-import { db } from "../../config/firebase";
+import { db } from "../../../config/firebase";
 import {
   getDocs,
   updateDoc,
