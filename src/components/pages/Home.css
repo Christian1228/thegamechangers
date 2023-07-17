@@ -21,15 +21,19 @@
   margin-right: auto;
   border-radius: 20px;
   border: 2.5px solid rgb(0, 100, 139);
+  box-sizing: border-box;
+  padding: 20px;
 }
 
 .cards-container {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
   margin: 0;
 }
 
 .card-item {
+  flex: 1 0 300px;
   width: 300px;
   color: black;
   text-align: center;
@@ -70,7 +74,8 @@
   display: inline-block;
   text-decoration: none;
   color: white;
-  border: 0;
+  border: none;
+  border-width: 1px;
   padding: 1px;
   font-size: 14px;
   background-color: #a7c7e7;
@@ -93,17 +98,18 @@ button {
   width: 186px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 760px) {
   .home-page {
-    margin-top: 5%;
+    width: 100%;
   }
 
   .card-item {
-    width: 80%;
+    flex-basis: 100%;
+    width: 100%;
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 760px) {
   .card-item {
     padding: 15px;
   }
@@ -120,5 +126,10 @@ button {
   .next-btn,
   .final-btn {
     font-size: 12px;
+  }
+
+  .card-item:last-child {
+    flex-basis: 100%;
+    width: 50%;
   }
 }
