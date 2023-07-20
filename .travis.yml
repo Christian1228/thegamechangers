@@ -1,0 +1,9 @@
+language: java
+jdk:
+  - openjdk8
+
+before_install:
+  -curl -sL https://firebase.tools \ bash
+
+script:
+  - firebase emulators:exec --project thegamchangers-9d9cc './integration-test.sh'
